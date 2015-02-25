@@ -1,0 +1,109 @@
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  margin: 0;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+
+html, body, h1, h2, h3, h4, h5, h6, ul, li, p, a, b, i, span, article, figure, header, footer, section, hgroup, fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+fieldset {
+  border: none;
+}
+
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a img {
+  outline: none;
+  border: 0;
+}
+
+object, embed {
+  outline: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+//================
+// Utility Classes
+//================
+.hide {
+  display: none;
+}
+
+.op0 {
+  opacity: 0 !important;
+}
+
+.clearfix, %clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.resetBtn {
+  outline: 0;
+  border: 0;
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+
+.resetLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hideText {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ttu {
+  text-transform: uppercase;
+}
+
+.tac {
+  text-align: center;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.nos {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
