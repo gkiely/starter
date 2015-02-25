@@ -1,5 +1,8 @@
-Starter Project
+Starter
 =================
+
+Starter for front-end projects <br>
+
 
 **Contributors:** Grant Kiely
 
