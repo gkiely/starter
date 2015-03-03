@@ -443,6 +443,10 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/Users/grantkiely/sites/starter"
+	],
 	"file_history":
 	[
 		"/Users/grantkiely/sites/starter/starter.sublime-project",
@@ -801,7 +805,7 @@
 	{
 		"height": 0.0
 	},
-	"project": "testing.sublime-project",
+	"project": "starter.sublime-project",
 	"replace":
 	{
 		"height": 42.0
