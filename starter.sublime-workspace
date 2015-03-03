@@ -291,22 +291,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "src/sass/_base.scss",
-			"settings":
-			{
-				"buffer_size": 3074,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/js/app/app.js",
-			"settings":
-			{
-				"buffer_size": 369,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -459,18 +443,12 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/Users/grantkiely/sites/starter",
-		"/Users/grantkiely/sites/starter/dev",
-		"/Users/grantkiely/sites/starter/src",
-		"/Users/grantkiely/sites/starter/src/html",
-		"/Users/grantkiely/sites/starter/src/html/pages",
-		"/Users/grantkiely/sites/starter/src/html/partials",
-		"/Users/grantkiely/sites/starter/src/sass"
-	],
 	"file_history":
 	[
+		"/Users/grantkiely/sites/starter/starter.sublime-project",
+		"/Users/grantkiely/sites/starter/starter.sublime-workspace",
+		"/Users/grantkiely/sites/testing/src/js/app/app.js",
+		"/Users/grantkiely/sites/testing/src/sass/_base.scss",
 		"/Users/grantkiely/sites/starter/src/js/app/util.js",
 		"/Users/grantkiely/sites/starter/src/sass/_mixins.scss",
 		"/Users/grantkiely/sites/starter/src/js/nobuild/mocha.js",
@@ -486,7 +464,6 @@
 		"/Users/grantkiely/sites/starter/src/html/partials/head.html",
 		"/Users/grantkiely/sites/starter/src/sass/_home.scss",
 		"/Users/grantkiely/sites/starter/src/sass/app.scss",
-		"/Users/grantkiely/sites/starter/starter.sublime-project",
 		"/Users/grantkiely/Downloads/font-awesome-4.3.0/css/font-awesome.css",
 		"/Users/grantkiely/sites/1pel/sass/_Grid.scss",
 		"/Users/grantkiely/sites/starter/src/sass/_Text.scss",
@@ -595,14 +572,11 @@
 		"/Users/grantkiely/sites/10gag/html/pages/gif.html",
 		"/Users/grantkiely/sites/10gag/html/pages/settings-profile.html",
 		"/Users/grantkiely/sites/10gag/html/pages/settings-password.html",
-		"/Users/grantkiely/sites/10gag/html/pages/settings-account.html",
-		"/Users/grantkiely/sites/10gag/html/pages/profile.mobile.html",
-		"/Users/grantkiely/sites/10gag/html/pages/profile-posts.html",
-		"/Users/grantkiely/sites/10gag/html/pages/page.mobile.html"
+		"/Users/grantkiely/sites/10gag/html/pages/settings-account.html"
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 23.0
 	},
 	"find_in_files":
 	{
@@ -787,71 +761,14 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "src/sass/_base.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3074,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								3074
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 2782.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/js/app/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 369,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 34.0
+		"height": 23.0
 	},
 	"input":
 	{
@@ -880,15 +797,11 @@
 		]
 	},
 	"menu_visible": true,
-	"output.CSS Extended Completions":
-	{
-		"height": 0.0
-	},
 	"output.find_results":
 	{
 		"height": 0.0
 	},
-	"project": "starter.sublime-project",
+	"project": "testing.sublime-project",
 	"replace":
 	{
 		"height": 42.0
@@ -1441,7 +1354,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 241.0,
 	"status_bar_visible": true,
 	"template_settings":
