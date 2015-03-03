@@ -29,3 +29,4 @@ Project Details
 * I'm using gulp-file-include to include the html files.
 * src will generate a dev folder for use in development (can't use src due to html includes)
 * `gulp dist` will generate minified prod code
+* using 6to5, so you can utilise ES6 js code

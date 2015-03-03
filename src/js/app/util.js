@@ -1,3 +1,73 @@
+var clog = (function(){if(window.console && ~window.location.host.indexOf("localhost") ) return function clog(val){console.log(val);};else return function clog(){};})();
+
+
+// Class Code
+// ========
+
+// @desc: set's properties for object passed in
+function setProps (_this, inst) {
+	for(var i in inst){
+		_this[i] = inst[i];
+	}
+}
+
+//@desc: set's properties to instance, calls init function if present
+// if third param: calls checkReqs
+function setPropsAndInit(_this, inst, req){
+	if(req){
+		checkReqs(req, inst);
+	}
+  setProps(_this, inst);
+  if(typeof inst.init === "function"){
+  	inst.init.apply(_this);	
+  }
+}
+
+// @desc: checks requirements for class object
+function checkReqs(reqs, inst){
+  if(inst){
+  	for(var i in reqs){
+  		if(inst.hasOwnProperty(i)){
+  			if(!reqs[i](inst[i])){
+  				throw new Error('Type Error for property: ' + i );
+  			}
+  		}
+  		else{
+  			throw new Error('Class instance is missing the property: ' + i );
+  		}
+  	}
+  }
+  else{
+  	throw new Error('You did not include an object in your class instance.');
+  }
+}
+
+let type = {
+	$: function(){
+	  
+	},
+	arr: function(arr){
+		return Array.isArray(arr);
+	},
+	bool: function(b){
+	  return typeof b === "bool";
+	},
+	dom: function(node){
+	  return node.nodeName ? true : false;
+	},
+	int: function(val){
+	  return !isNaN(val);
+	},
+	str: function(s){
+	 return typeof s === "string"; 
+	},
+	optional: function(){
+	  return true;
+	}
+}
+
+
+
 window.UTIL = {};
 
 

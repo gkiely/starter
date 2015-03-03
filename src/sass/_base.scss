@@ -1,8 +1,19 @@
-*, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+// ==================
+// Resets/base styles
+// ==================
+html {
   box-sizing: border-box;
 }
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+%base-font{
+	font-size: em(16);
+}
+
+// Angular
+[ng-cloak], [data-ng-cloak], .ng-cloak {visibility: hidden !important;}
 
 html, body {
   height: 100%;
@@ -10,27 +21,25 @@ html, body {
   font-size: 100%;
   margin: 0;
 }
-
 body {
   text-rendering: optimizeLegibility;
 }
-
 html, body, h1, h2, h3, h4, h5, h6, ul, li, p, a, b, i, span, article, figure, header, footer, section, hgroup, fieldset {
   margin: 0;
   padding: 0;
 }
 
-li {
-  list-style-type: none;
+h1,h2,h3,h4,h5,h6{
+	font-weight: normal;
 }
+li {list-style-type: none;}
+ol li{list-style-type: decimal;}
+.ul-default, .ul-default li{
+	list-style-type: disc;
+}
+fieldset{border: none;}
 
-fieldset {
-  border: none;
-}
-
-a {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
+a {-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
 
 a img {
   outline: none;
@@ -45,17 +54,11 @@ img {
   max-width: 100%;
 }
 
-//================
-// Utility Classes
-//================
-.hide {
-  display: none;
-}
 
-.op0 {
-  opacity: 0 !important;
-}
 
+// =========
+// Extenders
+// =========
 .clearfix, %clearfix {
   &:after {
     content: "";
@@ -64,46 +67,170 @@ img {
   }
 }
 
-.resetBtn {
-  outline: 0;
-  border: 0;
-  background: none;
-  margin: 0;
-  padding: 0;
-}
-
-.resetLink {
-  text-decoration: none;
-  color: inherit;
-}
-
-.hideText {
+%hideText, .hideText {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
 }
 
-.ttu {
-  text-transform: uppercase;
-}
-
-.tac {
-  text-align: center;
-}
-
-.fl {
-  float: left;
-}
-
-.fr {
-  float: right;
-}
-
-.nos {
+%nos, .nos {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+%resetBtn, .resetBtn {
+  outline: 0;
+  border: 0;
+  background: none;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+%resetLink, .resetLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+
+//================
+// Utility Classes
+//================
+
+// Floats
+// ======
+%fl, .fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.fn{
+	float: none
+}
+
+
+// Display/visibility
+// ==================
+.cell{
+	display: table-cell; 
+	vertical-align: middle
+}
+%db, .db{
+	display: block;
+}
+.dib{
+	display: inline-block
+}
+.hide {
+	display: none;
+}
+%ninja, .ninja{
+	visibility: hidden;
+}
+.table{display: table; height: 100%}
+
+
+// Width/height
+// ============
+.h-100{
+	height: 100%
+}
+
+// Margin
+// ======
+%m0, .m0{
+	margin: 0;
+}
+%ma, .m0a{
+	margin: 0 auto;
+}
+%maa, .ma{
+	margin: auto;
+}
+.mh-100{
+	min-height: 100%
+}
+
+// Padding
+// =======
+.noPad{
+	padding: 0 !important
+}
+
+// Position
+// ========
+.inner, .pos-r, .rel{
+	position: relative;
+}
+%.pos-a, .pos-a{
+	position: absolute
+}
+%pseudo{
+	content: "";
+	position: absolute;
+}
+%tbma, .tbma{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+%trblma, .trblma{
+	@extend %tbma;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+
+// Text
+// ====
+.nowrap, .no-wrap{
+	white-space:nowrap
+}
+.ttu {
+	text-transform: uppercase
+}
+%tac, .tac {
+	text-align: center
+}
+
+
+// =====
+// Loops
+// =====
+
+// Grid
+// ====
+@for $i from 1 through 12{
+	.Grid-#{$i}{
+		@extend %fl;
+		width: $i / 12 * 100%;
+	}
+	@for $j from 1 through 12{
+		.Grid-#{$i}-#{$j}{
+			@extend %fl;
+			width: ($i + $j / 10) / 12 * 100%;
+		}
+	}
+}
+
+// Spacers
+// =======
+$spacers: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 30 40 50 60 70 80 90 100;
+@each $item in $spacers{
+	.spacer-#{$item}{
+		@extend %base-font;
+		@extend %ninja;
+		@extend %mn;
+		height: em($item);
+	}
 }
