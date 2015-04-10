@@ -6,7 +6,7 @@
 
 if(window.$){
 	var $doc = $(document),
-			$win = $w = $(window),
+			$win = $(window),
 			$body = $(document.body);
 }
 

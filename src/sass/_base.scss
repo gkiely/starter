@@ -202,35 +202,8 @@ img {
 %tac, .tac {
 	text-align: center
 }
-
-
-// =====
-// Loops
-// =====
-
-// Grid
-// ====
-@for $i from 1 through 12{
-	.Grid-#{$i}{
-		@extend %fl;
-		width: $i / 12 * 100%;
-	}
-	@for $j from 1 through 12{
-		.Grid-#{$i}-#{$j}{
-			@extend %fl;
-			width: ($i + $j / 10) / 12 * 100%;
-		}
-	}
-}
-
-// Spacers
-// =======
-$spacers: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 30 40 50 60 70 80 90 100;
-@each $item in $spacers{
-	.spacer-#{$item}{
-		@extend %base-font;
-		@extend %ninja;
-		@extend %mn;
-		height: em($item);
-	}
+// http://blogs.adobe.com/webplatform/2014/08/13/one-weird-trick-to-baseline-align-text/
+.strut{
+	display: inline-block;
+	height: 1em;
 }

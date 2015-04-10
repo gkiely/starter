@@ -293,9 +293,14 @@
 	[
 	],
 	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 392.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -445,27 +450,34 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/grantkiely/sites/starter"
+		"/Users/grantkiely/sites/starter",
+		"/Users/grantkiely/sites/starter/src",
+		"/Users/grantkiely/sites/starter/src/img",
+		"/Users/grantkiely/sites/starter/src/js"
 	],
 	"file_history":
 	[
+		"/Users/grantkiely/sites/starter/bower.json",
+		"/Users/grantkiely/sites/starter/readme.md",
 		"/Users/grantkiely/sites/starter/starter.sublime-project",
+		"/Users/grantkiely/sites/starter/src/img/readme.md",
+		"/Users/grantkiely/sites/starter/gulpfile.js",
+		"/Users/grantkiely/sites/starter/src/html/partials/head.html",
+		"/Users/grantkiely/sites/starter/src/js/app/app.js",
+		"/Users/grantkiely/sites/starter/src/sass/_base.scss",
+		"/Users/grantkiely/sites/starter/src/html/pages/index.html",
+		"/Users/grantkiely/sites/starter/.gitignore",
 		"/Users/grantkiely/sites/starter/starter.sublime-workspace",
 		"/Users/grantkiely/sites/testing/src/js/app/app.js",
 		"/Users/grantkiely/sites/testing/src/sass/_base.scss",
 		"/Users/grantkiely/sites/starter/src/js/app/util.js",
 		"/Users/grantkiely/sites/starter/src/sass/_mixins.scss",
 		"/Users/grantkiely/sites/starter/src/js/nobuild/mocha.js",
-		"/Users/grantkiely/sites/starter/gulpfile.js",
-		"/Users/grantkiely/sites/starter/src/sass/_base.scss",
 		"/Users/grantkiely/sites/starter/src/js/nobuild/backbone.min.js",
 		"/Users/grantkiely/sites/starter/src/js/nobuild/bootstrap.js",
 		"/Users/grantkiely/sites/starter/src/js/nobuild/commondev.js",
 		"/Users/grantkiely/sites/starter/src/js/nobuild/chai.js",
-		"/Users/grantkiely/sites/starter/src/js/app/app.js",
-		"/Users/grantkiely/sites/starter/src/html/pages/index.html",
 		"/Users/grantkiely/sites/starter/src/html/partials/header-banner.html",
-		"/Users/grantkiely/sites/starter/src/html/partials/head.html",
 		"/Users/grantkiely/sites/starter/src/sass/_home.scss",
 		"/Users/grantkiely/sites/starter/src/sass/app.scss",
 		"/Users/grantkiely/Downloads/font-awesome-4.3.0/css/font-awesome.css",
@@ -477,7 +489,6 @@
 		"/Users/grantkiely/sites/starter/src/js/nobuild/underscore.js",
 		"/Users/grantkiely/sites/1pel/sass/_func.scss",
 		"/Users/grantkiely/sites/starter/src/sass/_Feed.scss",
-		"/Users/grantkiely/sites/starter/.gitignore",
 		"/Users/grantkiely/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
 		"/Users/grantkiely/sites/1pel_project/repos/es6_build/vendor/jasmine/spec/core/SpySpec.js",
 		"/Users/grantkiely/sites/1pel_project/repos/es6_build/vendor/ember-simple-auth/ember-simple-auth-cookie-store.js",
@@ -573,14 +584,11 @@
 		"/Users/grantkiely/sites/10gag/html/pages/index.mobile.html",
 		"/Users/grantkiely/sites/10gag/html/pages/likes.mobile.html",
 		"/Users/grantkiely/sites/10gag/html/pages/index.html",
-		"/Users/grantkiely/sites/10gag/html/pages/gif.html",
-		"/Users/grantkiely/sites/10gag/html/pages/settings-profile.html",
-		"/Users/grantkiely/sites/10gag/html/pages/settings-password.html",
-		"/Users/grantkiely/sites/10gag/html/pages/settings-account.html"
+		"/Users/grantkiely/sites/10gag/html/pages/gif.html"
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -805,6 +813,7 @@
 	{
 		"height": 0.0
 	},
+	"pinned_build_system": "",
 	"project": "starter.sublime-project",
 	"replace":
 	{
@@ -814,8 +823,33 @@
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"star",
+				"starter.sublime-project"
+			],
+			[
+				"gulp",
+				"gulpfile.js"
+			],
+			[
+				"head",
+				"src/html/partials/head.html"
+			],
+			[
+				"in",
+				"src/html/pages/index.html"
+			],
+			[
+				"base",
+				"src/sass/_base.scss"
+			],
+			[
+				"ap",
+				"src/js/app/app.js"
+			],
 			[
 				"util",
 				"src/js/app/util.js"
@@ -825,16 +859,8 @@
 				"src/js/app/app.js"
 			],
 			[
-				"base",
-				"src/sass/_base.scss"
-			],
-			[
 				"mix",
 				"src/sass/_mixins.scss"
-			],
-			[
-				"gulp",
-				"gulpfile.js"
 			],
 			[
 				"comm",
@@ -1001,10 +1027,6 @@
 				"html/views/head-mobile.html"
 			],
 			[
-				"ap",
-				"js/app.js"
-			],
-			[
 				"heaer-mo",
 				"html/views/header-mobile.html"
 			],
@@ -1031,10 +1053,6 @@
 			[
 				"gu",
 				"gulpfile.js"
-			],
-			[
-				"head",
-				"html/views/header.html"
 			],
 			[
 				"image",
@@ -1319,14 +1337,6 @@
 			[
 				"card.html",
 				"app/views/card/card.html"
-			],
-			[
-				"cardtop",
-				"app/views/card/card-top-applicant.html"
-			],
-			[
-				"cardo",
-				"app/views/card/cardOld.html"
 			]
 		],
 		"width": 0.0
@@ -1334,6 +1344,7 @@
 	"select_project":
 	{
 		"height": 500.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -1346,6 +1357,7 @@
 	"select_symbol":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],

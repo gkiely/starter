@@ -4,17 +4,19 @@
 var gulp = require('gulp'),
 		gutil = require('gulp-util')
 		concat = require('gulp-concat'),
+		cssmin = null,
 		fileInclude = require('gulp-file-include'),
 		htmlmin = function(){},
 		uglify = function(){},
 		sass = require('gulp-sass'),
 		plumber = require('gulp-plumber'),
 		livereload = require('gulp-livereload'),
-		minifyCSS = function(){},
 		prefix = require('gulp-autoprefixer'),
     react = require('gulp-react'),
+    ngAnnotate = require('gulp-ng-annotate'),
     sourcemaps = require('gulp-sourcemaps'),
     to5 = require('gulp-6to5'),
+    responsive = require('gulp-responsive'),
     webserver = require('gulp-webserver');
 
 function onError(err) {
@@ -28,24 +30,29 @@ var dir = {
 	dist: 'dist/' // Prod code, max compresssion
 }
 
-// Deprecated
+
 var path = {
   html: [dir.src + 'html/pages/*.html'],
-  fonts: dir.src + 'sass/fonts/*',
-  img: [dir.src + 'img/*'],
+  fonts: dir.src + 'sass/fonts/**/*',
+  img: [dir.src + 'img/**/*'],
   viewHtml: [dir.src + 'html/partials/*.html', dir.src + 'html/elems/*.html'],
 	js: [dir.src + 'js/app/util.js', dir.src + 'js/app/*.js' ],
   jslib: [dir.src + 'js/lib/jquery.min.js', dir.src + 'js/lib/angular.js', dir.src + 'js/lib/*.js'],
   jsx: [dir.src + 'js/app/components/*.jsx'],
   nobuild: [dir.src + 'js/nobuild/*js'],
-	sass: [dir.src + 'sass/*.scss']
+	sass: [dir.src + 'sass/*.scss'],
+	sassLib: [dir.src + 'sass/lib/*.scss'],
+	media: [dir.src + 'media/**/*']
 };
 
 
 path.dev = {
-	css: [dir.dev + 'css/**'],
+	css: [dir.dev + 'css/**/*'],
 	html: [dir.dev + '*.html'],
-	js: [dir.dev + 'js/*.js']
+	img: [dir.dev + 'img/**/*'],
+	imgResp: [dir.src + 'img/**/*.jpg', dir.dev + 'img/**/*.png'],
+	js: [dir.dev + 'js/*.js'],
+	media: [dir.dev + 'media/**/*']
 };
 
 
@@ -67,6 +74,32 @@ gulp.task('img', function(){
   .pipe(gulp.dest(dir.dev + 'img'));
 });
 
+gulp.task('imgResp', function(){
+	gulp.src(path.dev.imgResp)
+  .pipe(responsive({
+  	'**/*': [{
+  		width: '50%',
+  		// rename:{suffix: "@2x"} // Don't need this anymore, but keeping for reference
+  	}]},{
+  		strictMatchImages: false
+  	}
+  ))
+  .pipe(gulp.dest(dir.dev + 'img/x2'))
+  .pipe(responsive({
+  	'**/*': [{
+  		width: '33.333333333%'
+  	}]}, {
+  		strictMatchImages: false
+  	}
+  ))
+  .pipe(gulp.dest(dir.dev + 'img/x1'))
+});
+
+gulp.task('media', function(){
+  gulp.src(path.media)
+ 	.pipe(gulp.dest(dir.dev + 'media'))
+});
+
 gulp.task('fonts', function(){
 	gulp.src(path.fonts)
 	.pipe(gulp.dest(dir.dev + 'css/fonts'));
@@ -78,6 +111,7 @@ gulp.task('js', function(){
 	.pipe(plumber({ errorHandler: onError }))
 	.pipe(sourcemaps.init())
 	.pipe(to5())
+	.pipe(ngAnnotate())
 	.pipe(concat('app.js'))
 	.pipe(sourcemaps.write('.'))
 	.on('error', gutil.log)
@@ -118,11 +152,15 @@ gulp.task('sass', function(){
 		.pipe(gulp.dest(dir.dev + 'css'));
 });
 
+gulp.task('sassLib', function(){
+	gulp.src(path.sassLib)
+		.pipe(plumber({ errorHandler: onError }))
+		.pipe(sass( {style:'compressed', precision: 10} ))
+		.pipe(prefix())
+		.on('error', gutil.log)
+		.pipe(gulp.dest(dir.dev + 'css'));
+});
 
-function swallowError(e){
-  console.log(e.toString());
-  this.emit('end');
-}
 
 //Start server
 gulp.task('serverip', function(){
@@ -142,7 +180,20 @@ gulp.task('server', function(){
 gulp.task('serverOpen', function(){
   gulp.src(dir.dev)
   .pipe(webserver({
-  	open: true
+  	open: true,
+  	livereload: true
+  }))
+  .pipe(webserver({
+  	host: '192.168.1.3',
+  	livereload: true
+  }))
+});
+
+gulp.task('dist-server', function(){
+  gulp.src(dir.dist)
+  .pipe(webserver({
+  	open: true,
+  	livereload: true
   }))
   .pipe(webserver({
   	host: '192.168.1.3',
@@ -153,14 +204,13 @@ gulp.task('serverOpen', function(){
 
 // Dist
 // =======
-//@todo: do rest of dist tasks.
-
 gulp.task('dist-init', function(){
+	cssmin = require('gulp-cssmin');
 	del = require('del');
   htmlmin = require('gulp-htmlmin');
   uglify = require("gulp-uglify");
-  minifyCSS = require('gulp-minify-css')
 });
+
 
 gulp.task('dist-html', function(){
   gulp.src(path.dev.html)
@@ -189,11 +239,23 @@ gulp.task('dist-css', function(){
   gulp.src(path.dev.css)
   .pipe(plumber({ errorHandler: onError }))
   // .pipe(sourcemaps().init())
-  .pipe(minifyCSS())
+  .pipe(cssmin())
   // .pipe(sourcemaps.write('.'))
   .on('error', gutil.log)
   .pipe(gulp.dest(dir.dist + 'css'))
 });
+
+gulp.task('dist-img', function(){
+  gulp.src(path.dev.img)
+  .pipe(gulp.dest(dir.dist + 'img'))
+});
+
+gulp.task('dist-media', function(){
+  gulp.src(path.dev.media)
+  .pipe(gulp.dest(dir.dist + 'media'))
+});
+
+
 
 /***** Watches *****/
 gulp.task('watch-react', function(){
@@ -202,20 +264,27 @@ gulp.task('watch-react', function(){
 
 gulp.task('watch', function(){
 	livereload.listen();
-	gulp.watch([dir.dev + '*.html', dir.dev + 'css/app.css', dir.dev + 'js/app.js']).on('change', livereload.changed);
+	gulp.watch([dir.dev + '*.html', dir.dev + 'css/app.css', dir.dev + 'css/lib.css', dir.dev + 'js/app.js']).on('change', livereload.changed);
   gulp.watch(path.html, ['html']);
   gulp.watch(path.viewHtml, ['html']);
   gulp.watch(path.js, ['js']);
   gulp.watch(path.jslib, ['jslib']);
   gulp.watch(path.nobuild, ['js-nobuild']);
 	gulp.watch(path.sass, ['sass']);
+	gulp.watch(path.sassLib, ['sassLib']);
 	gulp.watch(path.img, ['img']);
 	gulp.watch(path.fonts, ['fonts']);
+	gulp.watch(path.media, ['media']);
 });
 
 
-gulp.task('dist', ['jslib', 'js', 'js-dist', 'html-dist']);
-gulp.task('default', ['html', 'js', 'jslib', 'js-nobuild', 'img', 'sass','server', 'watch' /*, 'watch-react' */]);
-gulp.task('ip', ['html', 'js', 'jslib', 'js-nobuild', 'img', 'sass', 'serverip', 'watch']);
-gulp.task('open', ['html', 'js', 'jslib', 'js-nobuild', 'img', 'sass','serverOpen', 'watch' /*, 'watch-react' */]);
-gulp.task('dist', ['dist-init', 'dist-html', 'dist-js', 'dist-css']);
+ 
+
+
+
+gulp.task('default', ['html', 'js', 'jslib', 'js-nobuild', 'img', 'imgResp', 'sass', 'sassLib', 'fonts', 'media', 'server', 'watch' /*, 'watch-react' */]);
+gulp.task('ip', ['html', 'js', 'jslib', 'js-nobuild', 'img', 'imgResp', 'sass', 'sassLib', 'fonts', 'media', 'serverip', 'watch']);
+gulp.task('open', ['html', 'js', 'jslib', 'js-nobuild', 'img', 'imgResp' ,'sass', 'sassLib', 'fonts', 'media', 'serverOpen', 'watch' /*, 'watch-react' */]);
+
+gulp.task('dist', ['dist-init', 'dist-html', 'dist-js', 'dist-css', 'dist-img', 'dist-media']);
+gulp.task('do', ['dist', 'dist-server']);
