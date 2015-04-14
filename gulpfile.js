@@ -32,14 +32,14 @@ var dir = {
 
 
 var path = {
-  html: [dir.src + 'html/pages/*.html'],
+  html: [dir.src + 'html/pages/**/*.html'],
   fonts: dir.src + 'sass/fonts/**/*',
-  img: [dir.src + 'img/**/*'],
-  viewHtml: [dir.src + 'html/partials/*.html', dir.src + 'html/elems/*.html'],
-	js: [dir.src + 'js/app/util.js', dir.src + 'js/app/*.js' ],
-  jslib: [dir.src + 'js/lib/jquery.min.js', dir.src + 'js/lib/angular.js', dir.src + 'js/lib/*.js'],
-  jsx: [dir.src + 'js/app/components/*.jsx'],
-  nobuild: [dir.src + 'js/nobuild/*js'],
+  img: [dir.src + 'img/**/*.{jpg,png}'],
+  viewHtml: [dir.src + 'html/partials/**/*.html'],
+	js: [dir.src + 'js/app/util.js', dir.src + 'modules/*.js', dir.src + 'js/app/**/*.js' ],
+  jslib: [dir.src + 'js/lib/jquery.min.js', dir.src + 'js/lib/jquery.js', dir.src + 'js/lib/angular.js', dir.src + 'js/lib/**/*.js'],
+  jsx: [dir.src + 'js/app/components/**/*.jsx'],
+  nobuild: [dir.src + 'js/nobuild/**/*.js'],
 	sass: [dir.src + 'sass/*.scss'],
 	sassLib: [dir.src + 'sass/lib/*.scss'],
 	media: [dir.src + 'media/**/*']
@@ -49,8 +49,7 @@ var path = {
 path.dev = {
 	css: [dir.dev + 'css/**/*'],
 	html: [dir.dev + '*.html'],
-	img: [dir.dev + 'img/**/*'],
-	imgResp: [dir.src + 'img/**/*.jpg', dir.dev + 'img/**/*.png'],
+	img: [dir.dev + 'img/**/*.{jpg,png}'],
 	js: [dir.dev + 'js/*.js'],
 	media: [dir.dev + 'media/**/*']
 };
@@ -75,7 +74,7 @@ gulp.task('img', function(){
 });
 
 gulp.task('imgResp', function(){
-	gulp.src(path.dev.imgResp)
+	gulp.src(path.img)
   .pipe(responsive({
   	'**/*': [{
   		width: '50%',
@@ -272,7 +271,7 @@ gulp.task('watch', function(){
   gulp.watch(path.nobuild, ['js-nobuild']);
 	gulp.watch(path.sass, ['sass']);
 	gulp.watch(path.sassLib, ['sassLib']);
-	gulp.watch(path.img, ['img']);
+	gulp.watch(path.img, ['img', 'imgResp']);
 	gulp.watch(path.fonts, ['fonts']);
 	gulp.watch(path.media, ['media']);
 });
