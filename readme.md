@@ -1,17 +1,17 @@
-Starter
+Starter setup front-end projects
 =================
 
 
 1. Get it
-===
+---
 ```sh
 mkdir myapp && cd $_
-git clone starter .
+git clone https://github.com/gkiely/starter.git .
 ```
 
 
 2. Start it
-===
+---
 ```sh
 gulp reload
 ```
@@ -19,7 +19,7 @@ gulp reload
 
 
 Project Details
-===
+---
 
 2 folders
 >src: This is the folder you want to edit
