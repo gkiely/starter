@@ -11,17 +11,3 @@
 @function em($pxval, $base: 16) {
   @return #{$pxval / $base}em;
 }
-
-@function rem($px) {
-  @return #{$px / $base}rem;
-}
-
-@function img-path($path) {
-  @return url("../img/mobile/#{$path}");
-  @return url("/img/mobile/#{$path}");
-}
-
-@function font-path($path) {
-  @return url("../fonts/#{$path}");
-  @return url("/fonts/#{$path}");
-}

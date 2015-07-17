@@ -1,0 +1,11 @@
+.Footer{
+  &.-default{
+    width: em($site-width);
+    margin: 0 auto;
+  }
+
+  // --- children ---
+  ._content{
+
+  }
+}

@@ -1,37 +1,59 @@
 Starter
 =================
 
-Starter for front-end projects <br>
 
-
-**Contributors:** Grant Kiely
-
-Build requirements
-----
-* Node & Gulp js
-
-------------
-
-Start project:
-
+1. Get it
+===
 ```sh
-
-cd folder
-npm install
-gulp
+mkdir myapp && cd $_
+git clone starter .
 ```
 
-Any gulp packages that are not found, `npm install gulp-package --save-dev` and commit the new package.json.
+
+2. Start it
+===
+```sh
+gulp reload
+```
+
 
 
 Project Details
----
-* I'm using gulp-file-include to include the html files.
-* src will generate a dev folder for use in development (can't use src due to html includes)
-* `gulp dist` will generate minified prod code
-* using 6to5, so you can utilise ES6 js code
+===
 
+2 folders
+>src: This is the folder you want to edit
+
+>dist: By default contains quick build for dev, running `gulp dist` will minify.
+
+* Using gulp-file-include to include the html files. It allows you to pass variables with the includes.
+* `gulp dist` will generate minified prod code [still working on this]
+* Im using bower indirectly, I download/update assets and then I copy them across to lib or app.
+
+HTML
+---
+* /pages get copied across, partials do not (they are only for including with gulp-file-include).
 
 JS
-* If you copy a file into the /lib folder it will get concated into lib.js, same for app, nobuild does not build and is just for testing.
-* Im using bower indirectly, I download/update assets and then I copy them across to lib or app.
+---
+* Using babeljs.
+* If you copy a file into the /lib folder it will get concated into lib.js, same for app, /nobuild does not build and is just for testing.
+* I'm not minifying them by default to keep the reload as fast as possible, run `dist` to minify/build properly.
+
+
+SASS
+---
+I'm globbing the sass files with this: https://github.com/gkiely/gulp-sass-bulk-import
+
+
+Responsive Images
+---
+There is a task called imgResp that will generate 1/2 and 1/3 images.
+Include the highest res at x3 in your img directory and it will populate from that.
+
+If you are a boss go here and get it installed. https://github.com/mahnunchik/gulp-responsive
+
+
+
+------
+Issues/Bugs are located in todo.html

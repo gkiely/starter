@@ -59,7 +59,7 @@ img {
 // =========
 // Extenders
 // =========
-.clearfix, %clearfix {
+.u-clearfix, .clearfix, %clearfix {
   &:after {
     content: "";
     display: table;
@@ -105,7 +105,7 @@ img {
 
 // Floats
 // ======
-%fl, .fl {
+%u-fl, %fl, .fl {
 	float: left;
 }
 .fr {
@@ -201,6 +201,9 @@ img {
 }
 %tac, .tac {
 	text-align: center
+}
+%tar, .tar{
+  text-align: right;
 }
 // http://blogs.adobe.com/webplatform/2014/08/13/one-weird-trick-to-baseline-align-text/
 .strut{

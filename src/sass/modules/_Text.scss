@@ -1,0 +1,53 @@
+// ===============
+// Text Module
+// ===============
+%Text{
+  font-family: $ff-content;
+}
+
+// Sizes
+//-----------------------
+%Text-xsml{
+  font-size: em($fz-xsml);
+}
+%Text-vsml{
+  font-size: em($fz-vsml);
+}
+%Text-sml{
+  font-size: em($fz-sml);
+}
+%Text-msml{
+  font-size: em($fz-msml);
+}
+%Text-default{
+  font-size: em($fz-default);
+}
+%Text-med{
+  font-size: em($fz-med);
+}
+%Text-lge{
+  font-size: em($fz-lge);
+}
+%Text-vlge{
+  font-size: em($fz-vlge);
+}
+%Text-xlge{
+  font-size: em($fz-xlge);
+}
+
+
+// Colors
+//-----------------------
+%Text-orange{
+  color: $c-orange;
+}
+
+// Content
+//-----------------------
+%Text-title{
+  font-weight: bold;
+}
+%Text-content{
+  line-height: 1.5;
+}
+
