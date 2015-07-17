@@ -1,4 +1,4 @@
-Starter setup front-end projects
+Starter for front-end projects
 =================
 
 
@@ -32,7 +32,7 @@ Project Details
 
 HTML
 ---
-* /pages get copied across, partials do not (they are only for including with gulp-file-include).
+* /pages get copied across, partials do not (should be included using gulp-file-include).
 
 JS
 ---
@@ -43,8 +43,8 @@ JS
 
 SASS
 ---
-I'm globbing the sass files with this: https://github.com/gkiely/gulp-sass-bulk-import
-
+* I'm globbing the sass files with this: https://github.com/gkiely/gulp-sass-bulk-import
+* Using autoprefixer
 
 Responsive Images
 ---
