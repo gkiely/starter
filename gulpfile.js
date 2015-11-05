@@ -1,22 +1,23 @@
-var babel         = require('gulp-babel'),
-    bulkSass      = require('gulp-sass-bulk-import'),
-    cache         = require('gulp-cached'),
-    concat        = require('gulp-concat'),
-    fileInclude   = require('gulp-file-include'),
-    gulp          = require('gulp'),
-    livereload    = require('gulp-livereload'),
-    ngAnnotate    = require('gulp-ng-annotate'),
-    prefix        = require('gulp-autoprefixer'),
-    react         = require('gulp-react'),
-    remember      = require('gulp-remember');
-    sass          = require('gulp-sass'),
-    sourcemaps    = require('gulp-sourcemaps'),
-    webserver     = require('gulp-webserver'),
+var babel             = require('gulp-babel'),
+    bulkSass          = require('gulp-sass-bulk-import'),
+    cache             = require('gulp-cached'),
+    concat            = require('gulp-concat'),
+    fileInclude       = require('gulp-file-include'),
+    gulp              = require('gulp'),
+    livereload        = require('gulp-livereload'),
+    ngAnnotate        = require('gulp-ng-annotate'),
+    prefix            = require('gulp-autoprefixer'),
+    react             = require('gulp-react'),
+    remember          = require('gulp-remember');
+    sass              = require('gulp-sass'),
+    sourcemaps        = require('gulp-sourcemaps'),
+    webserver         = require('gulp-webserver'),
+    path              = require('path'),
 
     //Build only
-    htmlmin       = function(){},
-    minifyCSS     = function(){},
-    uglify        = function(){};
+    htmlmin           = null,
+    minifyCSS         = null,
+    uglify            = null;
 
 
 // Handle Errors
@@ -28,27 +29,28 @@ var handleError = function(err) {
 
 var dir = {
   src: 'src/', // Handles src code
-  dev: 'dev/', // Dev code, just joins doesn't uglify/compress
   dist: 'dist/' // Prod code, max compresssion
 };
 
 // Deprecated
 var path = {
-  html: [dir.src + 'html/pages/*.html'],
+  html: [dir.src + 'html/pages/*.html', dir.src + 'html/testing/**/*.html'],
   fonts: dir.src + 'sass/fonts/*',
   img: [dir.src + 'img/*'],
   viewHtml: [dir.src + 'html/partials/*.html'],
   js: [dir.src + 'js/app/util.js', dir.src + 'js/app/*.js' ],
+  jsTesting: [dir.src + 'js/testing/*.js'],
+  jsTestingLib: [dir.src + 'js/testing/vendor/*.js'],
   jslib: [dir.src + 'js/lib/jquery.min.js', dir.src + 'js/lib/angular.js', dir.src + 'js/lib/*.js'],
-  jsx: [dir.src + 'js/app/components/*.jsx'],
+  jsx: [dir.src + 'js/app/components/**/*.jsx'],
   sass: [dir.src + 'sass/**/*.scss']
 };
 
 
 path.dev = {
-  css: [dir.dev + 'css/**'],
-  html: [dir.dev + '*.html'],
-  js: [dir.dev + 'js/*.js']
+  css: [dir.dist + 'css/**'],
+  html: [dir.dist + '*.html'],
+  js: [dir.dist + 'js/*.js']
 };
 
 
@@ -61,17 +63,17 @@ gulp.task('html', function(){
     basepath: './src/html'
   }))
   .on('error', handleError)
-  .pipe(gulp.dest(dir.dev))
+  .pipe(gulp.dest(dir.dist))
 });
 
 gulp.task('img', function(){
   gulp.src(path.img)
-  .pipe(gulp.dest(dir.dev + 'img'));
+  .pipe(gulp.dest(dir.dist + 'img'));
 });
 
 gulp.task('fonts', function(){
   gulp.src(path.fonts)
-  .pipe(gulp.dest(dir.dev + 'css/fonts'));
+  .pipe(gulp.dest(dir.dist + 'css/fonts'));
 });
 
 gulp.task('js', function(){
@@ -80,21 +82,34 @@ gulp.task('js', function(){
   .pipe(cache('scripts'))
   // .pipe(eslint())
   .pipe(babel())
-  .pipe(ngAnnotate())
+  .on('error', handleError)
+  // .pipe(ngAnnotate())
   .pipe(remember('scripts'))
-  // .pipe(eslint.format())``
+  // .pipe(eslint.format())
   .pipe(concat('app.js'))
   // .pipe(sourcemaps.write('.'))
   .on('error', handleError)
-  .pipe(gulp.dest(dir.dev + 'js'));
+  .pipe(gulp.dest(dir.dist + 'js'));
 });
 
 
 // Because lib doesn't change often, saves needless gulp cycles
 gulp.task('jslib', function(){
-  gulp.src(path.jslib)
+  return gulp.src(path.jslib)
   .pipe(concat('lib.js'))
-  .pipe(gulp.dest(dir.dev + 'js'));
+  .pipe(gulp.dest(dir.dist + 'js'));
+});
+
+gulp.task('js:testing', function(){
+  return gulp.src(path.jsTesting)
+  .pipe(concat('testing.js'))
+  .pipe(gulp.dest(dir.dist + 'js/testing'));
+});
+
+gulp.task('js:testing-lib', function(){
+  return gulp.src(path.jsTestingLib)
+  .pipe(concat('testing-lib.js'))
+  .pipe(gulp.dest(dir.dist + 'js/testing'));
 });
 
 
@@ -105,7 +120,7 @@ gulp.task('reactCompile', function(){
   gulp.src(path.jsx)
   .pipe(react())
   .on('error', handleError)
-  .pipe(gulp.dest(dir.dev + 'js/app/components'));
+  .pipe(gulp.dest(dir.dist + 'js/app/components'));
 });
 
 
@@ -118,7 +133,7 @@ gulp.task('sass', function(){
     .pipe(prefix())
     .on('error', handleError)
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(dir.dev + 'css'))
+    .pipe(gulp.dest(dir.dist + 'css'))
     .pipe(livereload())
 });
 
@@ -128,7 +143,7 @@ gulp.task('sassLib', function(){
   .pipe(sass( {style:'compressed', precision: 10} ))
   .pipe(prefix())
   .on('error', handleError)
-  .pipe(gulp.dest(dir.dev));
+  .pipe(gulp.dest(dir.dist));
 });
 
 
@@ -136,17 +151,17 @@ gulp.task('sassLib', function(){
 =            Server            =
 ==============================*/
 gulp.task('server', function(){
-  gulp.src(dir.dev)
+  gulp.src(dir.dist)
   .pipe(webserver())
 });
 gulp.task('server-reload', function(){
-  gulp.src(dir.dev)
+  gulp.src(dir.dist)
   .pipe(webserver({
     livereload: true
   }))
 });
 gulp.task('server-external', function(){
-  gulp.src(dir.dev)
+  gulp.src(dir.dist)
   .pipe(webserver())
   .pipe(webserver({
     host: '192.168.1.3',
@@ -206,11 +221,13 @@ gulp.task('watch-react', function(){
 
 gulp.task('watch', function(){
   livereload.listen();
-  gulp.watch([dir.dev + '*.html', dir.dev + 'js/app.js']).on('change', livereload.changed);
+  gulp.watch([dir.dist + '*.html', dir.dist + 'js/app.js', dir.dist + 'js/testing/**/*.js']).on('change', livereload.changed);
   gulp.watch(path.html, ['html']);
   gulp.watch(path.viewHtml, ['html']);
   gulp.watch(path.js, ['js']);
   gulp.watch(path.jslib, ['jslib']);
+  gulp.watch(path.jsTesting, ['js:testing']);
+  gulp.watch(path.jsTestingLib, ['js:testing-lib'])
   gulp.watch(path.sass, ['sass']);
   gulp.watch(path.sassLib, ['sassLib']);
   gulp.watch(path.img, ['img']);
@@ -218,6 +235,6 @@ gulp.task('watch', function(){
 });
 
 
-gulp.task('base', ['html', 'js', 'jslib', 'img', 'sass', 'watch']);
+gulp.task('base', ['html', 'js', 'jslib', 'js:testing', 'js:testing-lib', 'img', 'sass', 'watch', 'watch-react']);
 gulp.task('default', [ 'base', 'server']);
 gulp.task('reload', ['base', 'server-reload']);
