@@ -1,4 +1,4 @@
-// One rule: if it has parameters then it's a mixin. 
+// If it has parameters then it's a mixin. 
 // If it doesn't make it a %placeholder and @extend it.
 
 @mixin font($font, $fz, $fw:null){
@@ -15,7 +15,6 @@
   height: em($h, $fz);
 }
 
-// @todo: update to allow pc
 @mixin whp($w, $h: $w){
   width: $w * 1%;
   height: $h * 1%;
@@ -38,3 +37,46 @@
     }    
   }
 }
+
+// @mixin mod($args...){
+//   $module: nth($args, 1);
+//   @if length($args) > 1{
+//     @for $i from 2 through length($args){
+//       $item: nth($args, $i);
+//       $props: map-get($module, $item);
+//       @each $key, $val in $props{
+//         #{$key}: $val;
+//       }
+//     }
+//   }
+// }
+
+// @function map-set($map, $key, $value) {
+//   $new: ($key: $value);
+//   @return map-merge($map, $new);
+// }
+
+// $modules: ();
+// @mixin createModule($name, $map){
+//     $modules: map-set($modules, sup, $map);
+//     @debug $modules;
+// }
+
+// @include createModule,(Text (
+//   light: (
+//     color: red,
+//     background: blue
+//   )
+// ));
+
+
+// @mixin modd($args...){
+//   $module: nth($args, 1);
+//   @if length($args) > 1{
+//      @for $i from 2 through length($args){
+
+//      }
+//   }
+// }
+
+// @include modd(Text, light);

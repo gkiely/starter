@@ -1,16 +1,10 @@
 ;(function(){
-"use strict";
-
-
-
 
 if(window.$){
 	var $doc = $(document),
 			$win = $(window),
 			$body = $(document.body);
 }
-
-
 
 // Class Example code
 // ========
@@ -66,7 +60,7 @@ app.config(function($routeProvider, $locationProvider){
 	})
 	.when('/:pageName', {
 		templateUrl: setUrl
-	})
+	});
 });
 
 
@@ -75,7 +69,7 @@ app.config(function($routeProvider, $locationProvider){
  */
 
 app.filter('capitalize', function() {
-  return function(input, all) {
+  return function(input) {
     return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
   }
 });
