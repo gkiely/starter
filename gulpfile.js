@@ -5,7 +5,6 @@ var babel             = require('gulp-babel'),
     fileInclude       = require('gulp-file-include'),
     gulp              = require('gulp'),
     livereload        = require('gulp-livereload'),
-    ngAnnotate        = require('gulp-ng-annotate'),
     prefix            = require('gulp-autoprefixer'),
     react             = require('gulp-react'),
     remember          = require('gulp-remember');
