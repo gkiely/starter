@@ -9,10 +9,10 @@ mkdir myapp && cd $_
 git clone https://github.com/gkiely/starter.git .
 ```
 
-2. Install gulp
+2. Install
 ---
 ```sh
-npm install gulp
+npm install
 ```
 
 3. Start it
@@ -25,6 +25,10 @@ gulp
 
 Project Details
 ---
+
+Works with the livereload extension:
+https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en
+
 
 2 folders
 >src: This is the folder you want to edit
