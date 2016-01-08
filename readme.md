@@ -9,17 +9,26 @@ mkdir myapp && cd $_
 git clone https://github.com/gkiely/starter.git .
 ```
 
-
-2. Start it
+2. Install
 ---
 ```sh
-gulp reload
+npm install
+```
+
+3. Start it
+---
+```sh
+gulp
 ```
 
 
 
 Project Details
 ---
+
+Works with the livereload extension:
+https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en
+
 
 2 folders
 >src: This is the folder you want to edit
