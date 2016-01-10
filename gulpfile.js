@@ -2,6 +2,7 @@ var babel         = require('gulp-babel'),
     bulkSass      = require('gulp-sass-bulk-import'),
     // cache         = require('gulp-cached'),
     concat        = require('gulp-concat'),
+    config        = require('./gulp/gulp-config.js'),
     // eslint        = require('gulp-eslint'),
     fileInclude   = require('gulp-file-include'),
     gulp          = require('gulp'),
@@ -40,8 +41,21 @@ gulp.task('html', function(){
 /*==================================
 =            JavaScript            =
 ==================================*/
-
-
+gulp.task('js', function(){
+  gulp.src(config.js)
+  // .pipe(sourcemaps.init())
+  // .pipe(cache('scripts'))
+  // // .pipe(eslint())
+  // .pipe(babel({
+  //   // presets: ['es2015']
+  // }))
+  // .pipe(remember('scripts'))
+  // .pipe(eslint.format())
+  .pipe(concat('app.js'))
+  // .pipe(sourcemaps.write('.'))
+  .on('error', handleError)
+  .pipe(gulp.dest(dir.dev + 'js'));
+});
 
 
 /*============================
