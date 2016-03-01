@@ -133,3 +133,7 @@ UTIL.timer = function timer(func, time, amount){
 
 
 
+
+export default function(){
+  alo;
+}

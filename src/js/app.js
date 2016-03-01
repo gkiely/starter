@@ -1,3 +1,1 @@
-;(function(){
-
-})();
+import test from './util';

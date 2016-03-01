@@ -8,18 +8,23 @@ var babel         = require('gulp-babel'),
     gulp          = require('gulp'),
     livereload    = require('gulp-livereload'),
     prefix        = require('gulp-autoprefixer'),
-    // react         = require('gulp-react'),
     // remember      = require('gulp-remember');
     sass          = require('gulp-sass'),
     sourcemaps    = require('gulp-sourcemaps'),
     webserver     = require('gulp-webserver'),
 
+    webpack       = require('webpack-stream'),
     //Build only
     htmlmin       = function(){},
     minifyCSS     = function(){},
     uglify        = function(){};
 
 
+var handleError = function(err) {
+  console.log("\x07");
+  console.log(err.toString());
+  this.emit('end');
+};
 
 
 
@@ -42,19 +47,21 @@ gulp.task('html', function(){
 =            JavaScript            =
 ==================================*/
 gulp.task('js', function(){
-  gulp.src(config.js)
+  gulp.src(config.js.src)
   // .pipe(sourcemaps.init())
   // .pipe(cache('scripts'))
   // // .pipe(eslint())
   // .pipe(babel({
-  //   // presets: ['es2015']
+  //   presets: ['es2015', 'stage-0', 'react']
   // }))
+  .on('error', handleError)
+
   // .pipe(remember('scripts'))
   // .pipe(eslint.format())
-  .pipe(concat('app.js'))
+  // .pipe(concat('app.js'))
   // .pipe(sourcemaps.write('.'))
   .on('error', handleError)
-  .pipe(gulp.dest(dir.dev + 'js'));
+  .pipe(gulp.dest(config.js.dist));
 });
 
 

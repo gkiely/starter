@@ -11,7 +11,7 @@ var config = {
   dist: dist,
   html: path.join(src, 'html/pages/*.html'),
   js:{
-    src: path.join(src, 'js/app/components'),
+    src: path.join(src, 'js/app.js'),
     dist: dist
   },
   scss:{
