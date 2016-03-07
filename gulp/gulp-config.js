@@ -1,6 +1,7 @@
-var path = require('path');
-var src  = "src";
-var dist = "dist";
+var path  = require('path');
+var join  = path.join;
+var src   = "src";
+var dist  = "dist";
 
 
 var config = {
@@ -9,13 +10,15 @@ var config = {
     
   },
   dist: dist,
-  html: path.join(src, 'html/pages/*.html'),
+  html: join(src, 'html/pages/*.html'),
   js:{
-    src: path.join(src, 'js/app.js'),
+    src: join(src, 'js/app.js'),
     dist: dist
   },
-  scss:{
-    
+  sass:{
+    src: path.join(src, 'sass/app.scss'),
+    dist: path.join(dist, 'css'),
+    watch: path.join(src, 'sass/**/*.scss')
   }
 };
 

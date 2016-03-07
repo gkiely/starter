@@ -1,6 +1,6 @@
 {
   "name": "Starter",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "",
   "main": "",
   "repository": {
@@ -9,17 +9,21 @@
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
+    "get-my-ip": "0.0.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-babel": "^6.1.1",
-    "gulp-bulkSass": "gkiely/gulp-sass-bulk-import",
     "gulp-concat": "^2.6.0",
     "gulp-file-include": "^0.13.7",
+    "gulp-if": "^2.0.0",
     "gulp-livereload": "^3.8.1",
     "gulp-sass": "^2.1.1",
+    "gulp-sass-bulk-import": "^1.0.1",
+    "gulp-shell": "^0.5.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1",
-    "gulp-webserver": "^0.9.1"
+    "gulp-webserver": "^0.9.1",
+    "yargs": "^4.2.0"
   },
   "licence": "MIT"
 }
