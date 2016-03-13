@@ -1,3 +1,28 @@
-// body{
-//   color: red;
-// }
+/**
+ * Putting styles here for the time being, but should probas be better orgd
+ */
+
+
+.demo{
+
+}
+
+
+.parent{
+  margin-bottom: 50px;
+  height: 150px;
+  background: #eee;
+  &.-center{
+    display: flex;
+  }
+}
+
+
+.parent__child{
+  @include wh(50);
+  background: tomato;
+
+  &.-center{
+    margin: auto;
+  }
+}
