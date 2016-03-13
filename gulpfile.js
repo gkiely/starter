@@ -42,6 +42,7 @@ gulp.task('html', function(){
     prefix: '@@',
     basepath: './src/html'
   }))
+  .pipe(livereload())
   .on('error', handleError)
   .pipe(gulp.dest(config.dist))
 });
@@ -115,6 +116,9 @@ gulp.task('server', function(){
 gulp.task('watch', function(){
   gulp.watch(config.sass.watch, ['sass']);
   gulp.watch(config.html, ['html']);
+
+  //== Watch for changes
+  livereload.listen();
 });
 
 
