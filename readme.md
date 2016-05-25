@@ -9,10 +9,10 @@ mkdir myapp && cd $_
 git clone https://github.com/gkiely/starter.git .
 ```
 
-2. Install
+2. Install it
 ---
 ```sh
-npm install
+npm i
 ```
 
 3. Start it
