@@ -1,21 +1,21 @@
 var babel         = require('gulp-babel'),
     bulkSass      = require('gulp-sass-bulk-import'),
-    // cache         = require('gulp-cached'),
     concat        = require('gulp-concat'),
     config        = require('./gulp/gulp-config.js'),
-    // eslint        = require('gulp-eslint'),
+    eslint        = require('gulp-eslint'),
     fileInclude   = require('gulp-file-include'),
     gulp          = require('gulp'),
     gulpif        = require('gulp-if'),
     livereload    = require('gulp-livereload'),
     prefix        = require('gulp-autoprefixer'),
-    // remember      = require('gulp-remember');
+    path          = require('path'),
     sass          = require('gulp-sass'),
     shell         = require('gulp-shell'),
     sourcemaps    = require('gulp-sourcemaps'),
     webserver     = require('gulp-webserver'),
+    webpack       = require('webpack'),
+    newer         = require('gulp-newer'),
 
-    // webpack       = require('webpack-stream'),
     htmlmin       = function(){},
     minifyCSS     = function(){},
     uglify        = function(){},
@@ -51,22 +51,17 @@ gulp.task('html', function(){
 /*==================================
 =            JavaScript            =
 ==================================*/
-gulp.task('js', function(){
-  gulp.src(config.js.src)
-  .pipe(sourcemaps.init())
-  .pipe(cache('scripts'))
-  // .pipe(eslint())
-  .pipe(babel({
-    presets: ['es2015', 'stage-0', 'react']
-  }))
-  .on('error', handleError)
-  .pipe(remember('scripts'))
-  // .pipe(eslint.format())
-  .pipe(concat('app.js'))
-  .pipe(sourcemaps.write('.'))
-  .on('error', handleError)
-  .pipe(gulp.dest(config.js.dist));
+var compiler = webpack(config.webpack.dev);
+
+gulp.task('js', function(cb){
+  compiler.run(function(err, stats){
+    cb();
+    livereload.changed(config.js.dist + '/bundle.js');
+  })
 });
+
+
+/*=====  End of JavaScript  ======*/
 
 
 /*============================
@@ -84,6 +79,35 @@ gulp.task('sass', function(){
   .pipe(gulp.dest(config.sass.dist))
   .pipe(livereload())
 });
+
+
+
+/*===============================
+=            Linting            =
+===============================*/
+// var esconfig = require('./gulp/eslintrc.js');
+// var eslintPassed;
+gulp.task('lint:js', function () {
+//   return gulp.src([path.join(config.js.watch)])
+//   .pipe(gulpif( !prod, newer(path.join(config.copy.dist, 'js/') )))
+//   .pipe(eslint(esconfig))
+//   .pipe(eslint.format())
+//   .pipe(eslint.result(function(result){
+//     if(result.errorCount > 0){
+//       eslintPassed = false;
+//     }
+//     else{
+//       eslintPassed = true;
+//     }
+//   }))
+//   .pipe(eslint.failAfterError())
+//   .on('error', handleError)
+});
+
+
+
+/*=====  End of Linting  ======*/
+
 
 
 /*==============================
@@ -116,6 +140,7 @@ gulp.task('server', function(){
 gulp.task('watch', function(){
   gulp.watch(config.sass.watch, ['sass']);
   gulp.watch(config.html, ['html']);
+  gulp.watch(config.js.watch);
 
   //== Watch for changes
   livereload.listen();
