@@ -5,7 +5,6 @@ Starter for front-end projects
 1. Get it
 ---
 ```sh
-mkdir myapp && cd $_
 git clone https://github.com/gkiely/starter.git .
 ```
 
