@@ -25,7 +25,7 @@ gulp
 Project Details
 ---
 
-Works with the livereload extension:
+gulp watch works with the livereload extension:
 https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en
 
 
