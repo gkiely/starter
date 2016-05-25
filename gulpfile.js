@@ -1,4 +1,4 @@
-var babel         = require('gulp-babel'),
+var 
     bulkSass      = require('gulp-sass-bulk-import'),
     concat        = require('gulp-concat'),
     config        = require('./gulp/gulp-config.js'),
@@ -9,6 +9,7 @@ var babel         = require('gulp-babel'),
     livereload    = require('gulp-livereload'),
     prefix        = require('gulp-autoprefixer'),
     path          = require('path'),
+    join          = path.join,
     sass          = require('gulp-sass'),
     shell         = require('gulp-shell'),
     sourcemaps    = require('gulp-sourcemaps'),
@@ -53,7 +54,7 @@ gulp.task('html', function(){
 ==================================*/
 var compiler = webpack(config.webpack.dev);
 
-gulp.task('js', function(cb){
+gulp.task('js', ['lint:js'], function(cb){
   compiler.run(function(err, stats){
     cb();
     livereload.changed(config.js.dist + '/bundle.js');
@@ -77,7 +78,6 @@ gulp.task('sass', function(){
   .on('error', handleError)
   .pipe(sourcemaps.write('.'))
   .pipe(gulp.dest(config.sass.dist))
-  .pipe(livereload())
 });
 
 
@@ -85,23 +85,23 @@ gulp.task('sass', function(){
 /*===============================
 =            Linting            =
 ===============================*/
-// var esconfig = require('./gulp/eslintrc.js');
-// var eslintPassed;
+var esconfig = require('./gulp/eslintrc.js');
+var eslintPassed;
 gulp.task('lint:js', function () {
-//   return gulp.src([path.join(config.js.watch)])
-//   .pipe(gulpif( !prod, newer(path.join(config.copy.dist, 'js/') )))
-//   .pipe(eslint(esconfig))
-//   .pipe(eslint.format())
-//   .pipe(eslint.result(function(result){
-//     if(result.errorCount > 0){
-//       eslintPassed = false;
-//     }
-//     else{
-//       eslintPassed = true;
-//     }
-//   }))
-//   .pipe(eslint.failAfterError())
-//   .on('error', handleError)
+  return gulp.src([path.join(config.js.watch)])
+  .pipe(gulpif( !prod, newer(path.join(config.copy.dist, 'js/') )))
+  .pipe(eslint(esconfig))
+  .pipe(eslint.format())
+  .pipe(eslint.result(function(result){
+    if(result.errorCount > 0){
+      eslintPassed = false;
+    }
+    else{
+      eslintPassed = true;
+    }
+  }))
+  .pipe(eslint.failAfterError())
+  .on('error', handleError)
 });
 
 
@@ -140,7 +140,10 @@ gulp.task('server', function(){
 gulp.task('watch', function(){
   gulp.watch(config.sass.watch, ['sass']);
   gulp.watch(config.html, ['html']);
-  gulp.watch(config.js.watch);
+  gulp.watch(config.js.watch, ['js']);
+
+
+  gulp.watch(join(config.sass.dist, '**/*.css')).on('change', livereload.changed);
 
   //== Watch for changes
   livereload.listen();

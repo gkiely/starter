@@ -8,11 +8,12 @@
     "url": "https://github.com/gkiely/test.git"
   },
   "devDependencies": {
+    "babel-eslint": "^6.0.4",
     "babel-preset-es2015": "^6.3.13",
+    "eslint-plugin-react": "^5.1.1",
     "get-my-ip": "0.0.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
-    "gulp-babel": "^6.1.1",
     "gulp-concat": "^2.6.0",
     "gulp-eslint": "^2.0.0",
     "gulp-file-include": "^0.13.7",

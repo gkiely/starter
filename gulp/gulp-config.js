@@ -46,7 +46,7 @@ config.webpack = {
 config.webpack.dev.entry = config.js.src;
 config.webpack.dev.output = {
   path: 'dist/js',
-  filename: 'bundle.js'
+  filename: 'app.js'
 };
 
 /*=====  End of Webpack  ======*/
