@@ -5,7 +5,7 @@ Starter for front-end projects
 1. Get it
 ---
 ```sh
-git clone https://github.com/gkiely/starter.git .
+git clone https://github.com/gkiely/starter.git
 ```
 
 2. Install it
