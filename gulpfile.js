@@ -34,6 +34,31 @@ var handleError = function(err) {
 
 
 
+
+/*==============================
+=            Server            =
+==============================*/
+gulp.task('server', function(){
+  var ip = require('get-my-ip')();
+  //=== Dev server
+  var stream = gulp.src(config.dist);
+  stream.pipe(webserver());
+  if(ip){
+    stream.pipe(webserver({
+        host: ip,
+        livereload: true
+    }));
+  }
+
+  //=== nodejs server
+  // stream.pipe(shell([
+  //   `nodemon --debug --ignore src/ --ignore dist/ --ignore test/ & 
+  //   node-inspector --preload false`
+  // ]))
+});
+
+
+
 /*============================
 =            HTML            =
 ============================*/
@@ -88,7 +113,7 @@ gulp.task('sass', function(){
 var esconfig = require('./gulp/eslintrc.js');
 var eslintPassed;
 gulp.task('lint:js', function () {
-  return gulp.src([path.join(config.js.watch)])
+  return gulp.src(config.js.lint)
   .pipe(gulpif( !prod, newer(path.join(config.copy.dist, 'js/') )))
   .pipe(eslint(esconfig))
   .pipe(eslint.format())
@@ -108,30 +133,6 @@ gulp.task('lint:js', function () {
 
 /*=====  End of Linting  ======*/
 
-
-
-/*==============================
-=            Server            =
-==============================*/
-gulp.task('server', function(){
-  var ip = require('get-my-ip')();
-  //=== Dev server
-  var stream = gulp.src(config.dist);
-  stream.pipe(webserver());
-  if(ip){
-    stream.pipe(webserver({
-        host: ip,
-        livereload: true
-    }));
-  }
-
-  //=== nodejs server
-  // stream.pipe(shell([
-  //   `nodemon --debug --ignore src/ --ignore dist/ --ignore test/ & 
-  //   node-inspector --preload false`
-  // ]))
-
-});
 
 
 /*=============================
@@ -156,4 +157,4 @@ gulp.task('watch', function(){
 =================================*/
 gulp.task('default', ['watch', 'server']);
 
-
+gulp.task('prod', ['html', 'sass', 'js']);

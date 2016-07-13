@@ -22,7 +22,8 @@ var config = {
   js:{
     src: './' + join(src, 'js/app/app.js'),
     dist: dist,
-    watch: join(src, 'js/**/*.js')
+    watch: join(src, 'js/**/*.js'),
+    lint: join(src, 'js/app/**/*.js')
   },
   sass:{
     src: path.join(src, 'sass/app.scss'),
