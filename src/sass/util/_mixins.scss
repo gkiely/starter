@@ -20,6 +20,56 @@
   height: $h * 1%;
 }
 
+@mixin pseudo{
+  content: "";
+  position: absolute;
+}
+@mixin tbma{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+@mixin trblma{
+  @include tbma;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+@mixin clearfix{
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+/**
+ * Vertically center
+ */
+ // @mixin vert-center{
+ //   display: flex;
+ //   align-items: center;
+ // }
+
+@mixin vertical-center{
+  height: 1em;
+  @include tbma;
+  text-align: center;
+}
+
+@mixin center(){
+  height: 1em;
+  width: 1em;
+  @include trblma;
+  text-align: center;
+}
+
+
+
 /**
  * module mixin
  * 
@@ -29,7 +79,7 @@
 @mixin module($args...){
   $module: nth($args, 1);
   
-  @extend %#{$module};
+  @extend %#{$module} !optional;
   @if length($args) > 1{
     @for $i from 2 through length($args){
       $item: nth($args, $i);
@@ -37,6 +87,62 @@
     }    
   }
 }
+
+
+/**
+ * Media query
+ */
+ // @mixin mq($point) {
+ //   @if $point == fromMobile {
+ //     @media only screen and (min-device-width: 0px) and (max-device-width: 767px) { 
+ //      @content; 
+ //    }
+ //   }
+ //   @else if $point == fromTablet {
+ //     @media (min-device-width: 768px) { @content; }
+ //   }
+ //   @else if $point == fromDesktop {
+ //     @media (min-device-width: 1024px)  { @content; }
+ //   }
+ // }
+
+
+
+
+@mixin fromMobile{
+  @media (min-width: 768px) { @content; }
+}
+
+@mixin fromTablet{
+  @media (min-width: 1024px) { @content; }
+}
+
+
+@mixin toMobile{
+ @media only screen and (max-width: 767px) { 
+   @content; 
+ }
+}
+
+@mixin toTablet{
+  @media (max--width: 767px) { @content; }
+}
+
+@mixin toDesktop{
+  @media (max-width: 1023px) { @content; }
+}
+
+
+@mixin resetBtn{
+  outline: 0;
+  border: 0;
+  background: none;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  text-decoration: none;
+}
+
 
 // @mixin mod($args...){
 //   $module: nth($args, 1);

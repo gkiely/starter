@@ -1,0 +1,17 @@
+%Spacing{
+
+}
+
+%Spacing-med{
+  padding-top: em($sp-med);
+}
+
+%Spacing-children-med{
+  > div{
+    @include module(Spacing, med);
+    &:first-child{
+      padding: 0;
+    }
+  }
+}
+

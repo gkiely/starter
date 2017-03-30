@@ -1,0 +1,7 @@
+.Page{
+  padding: em($sp-lge) 0;
+  // padding-top: em($sp-lge / 4);
+  @include toMobile{
+    padding: em(30) em(10) em($sp-lge) em(10);
+  }
+}

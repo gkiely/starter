@@ -1,67 +1,106 @@
-Starter for front-end projects
+Windows
 =================
 
+1. Install node and git
+---
+- Open powershell as admin
+- Go to here: https://chocolatey.org/install, paste script into powershell
+- After install is complete, close powershell and open cmd
+- Install nodist: `choco install nodist`
+- Install git: `choco install git`
+- Close and re-open cmd
+- Check install worked by typing `nodist`, `git --version`
 
-1. Get it
+2. Get code 
 ---
 ```sh
-git clone https://github.com/gkiely/starter.git
+git clone https://sevenwestmedia.visualstudio.com/_git/POC
 ```
+> If the clone has permission errors, generate git credentials on visualstudio.com
 
-2. Install it
+3. Run project
 ---
 ```sh
-npm i
+npm start
 ```
 
-3. Start it
+---
+
+Mac
+=================
+1. Install node and git
+---
+- `brew install nvm`
+- `nvm install node`
+- `brew install git`
+
+Note: If you have already installed node, I would highly recommend you uninstall it and install nvm as it allows multiple versions of node and you do not have to be root to use the -g flag.
+
+If you aren't able to do this, you can follow other steps here to resolve root permission errors:
+http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo
+
+2. Get code 
 ---
 ```sh
-gulp
+git clone https://sevenwestmedia.visualstudio.com/_git/POC
 ```
+> If the clone has permission errors, generate git credentials on visualstudio.com
+
+
+3. Run project
+---
+```sh
+npm start
+```
+
+
+
+
+---
+
+
+Common issues
+---
+"Error not found python2", install: https://www.python.org/downloads/release/python-2713/
+- If you are still having issues follow this: https://github.com/nodejs/node-gyp/issues/629#issuecomment-153196245
+
+Issue with node-sass after updating node, run:
+`npm rebuild node-sass`
+
 
 
 
 Project Details
 ---
-
-gulp watch works with the livereload extension:
+If you want auto-reloading, use the livereload extension:
 https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en
 
 
-2 folders
->src: This is the folder you want to edit
+>src: This is the folder you want to edit. `gulp` command will watch and output to dist.
 
->dist: By default contains quick build for dev, running `gulp dist` will minify.
+>dist: `gulp` and `gulp prod` will output to this folder.
 
-* Using gulp-file-include to include the html files. It allows you to pass variables with the includes.
-* `gulp dist` will generate minified prod code [still working on this]
-* Im using bower indirectly, I download/update assets and then I copy them across to lib or app.
 
 HTML
 ---
-* /pages get copied across, partials do not (should be included using gulp-file-include).
+* Using gulp-file-include to include the html files. It allows you to pass variables with the includes.
+* /pages get copied across, partials do not.
 
 JS
 ---
-* Using babeljs.
-* If you copy a file into the /lib folder it will get concated into lib.js, same for app, /nobuild does not build and is just for testing.
-* I'm not minifying them by default to keep the reload as fast as possible, run `dist` to minify/build properly.
-
+* Using babeljs and webpack
+* webpack.dev.js for `gulp`
+* webpack.prod.js for `gulp prod`
 
 SASS
 ---
-* I'm globbing the sass files with this: https://github.com/gkiely/gulp-sass-bulk-import
+* I'm globbing the sass files with gulp-sass-glob
 * Using autoprefixer
 
-Responsive Images
+
+Server
 ---
-There is a task called imgResp that will generate 1/2 and 1/3 images.
-Include the highest res at x3 in your img directory and it will populate from that.
-
-If you are a boss go here and get it installed. https://github.com/mahnunchik/gulp-responsive
+Node.js and Express.
 
 
-
-------
-Issues/Bugs are located in todo.html
+---

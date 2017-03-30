@@ -1,0 +1,17 @@
+.ShelfVideo{
+	padding-top: em(10);
+	float: left;
+	clear: both;
+}
+
+
+/*----------  Children  ----------*/
+.ShelfVideo{
+	&__item{
+		float: left;
+		margin-right: em(10);
+	}
+	&__title{
+		color: #0099FF;
+	}
+}

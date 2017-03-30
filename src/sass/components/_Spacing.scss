@@ -1,0 +1,29 @@
+.Spacing{
+	
+}
+
+/*----------  Variables  ----------*/
+$Spacing--md-h: 15;
+
+/*----------  Mixins  ----------*/
+
+@mixin Spacing--md-h($fz: 16){
+	padding-left: em($Spacing--md-h, $fz);
+	padding-right: em($Spacing--md-h, $fz);
+}
+
+
+/*----------  Children  ----------*/
+.Spacing{
+	&--sm{
+		margin-top: em(10);
+	}
+	&--md{
+		margin-top: em(15);
+	}
+	&--md-h{
+		@include Spacing--md-h();
+	}
+}
+
+

@@ -12,8 +12,8 @@ html {
 	font-size: em(16);
 }
 
-// Angular
-[ng-cloak], [data-ng-cloak], .ng-cloak {visibility: hidden !important;}
+// Vue
+[v-cloak] { visibility: hidden !important; }
 
 html, body {
   height: 100%;
@@ -31,6 +31,7 @@ html, body, h1, h2, h3, h4, h5, h6, ul, li, p, a, b, i, span, article, figure, h
 
 h1,h2,h3,h4,h5,h6{
 	font-weight: normal;
+  // font-size: 16px;
 }
 li {list-style-type: none;}
 ol li{list-style-type: decimal;}
@@ -102,6 +103,15 @@ img {
 //================
 // Utility Classes
 //================
+.vac{
+  height: 100%;
+  display: table;
+  margin: 0 auto;
+}
+.vac-inner{
+  display: table-cell;
+  vertical-align: middle;
+}
 
 // Floats
 // ======
@@ -172,22 +182,13 @@ img {
 %pos-a, .pos-a{
 	position: absolute
 }
-%pseudo{
-	content: "";
-	position: absolute;
+
+.h100{
+  height: 100%;
 }
-%tbma, .tbma{
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	margin-top: auto;
-	margin-bottom: auto;
-}
-%trblma, .trblma{
-	@extend %tbma;
-	left: 0;
-	right: 0;
-	margin: auto;
+
+.w100{
+  width: 100%;
 }
 
 

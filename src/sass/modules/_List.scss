@@ -3,10 +3,21 @@
 // ===============
 %List{}
 
-%List-default{
-  margin: 0;
-}
+// %List-default{
+//   margin: 0;
+// }
 
-%List-horiz li{
-  display: inline-block;
-}
+// %List-horiz li{
+//   display: inline-block;
+// }
+
+// %List-post{
+//   // border: 1px solid #ccc;
+//   border-bottom: 1px solid $c-lighter;
+//   position: relative;
+//   width: 100%;
+//   padding: em(26) em(25);
+//   &:hover{
+//     // background: #eee;
+//   }
+// }

@@ -1,0 +1,19 @@
+.NavigationPanel{
+	background: #007AFF;
+	padding: em(15);
+	color: #fff;
+	position: relative;
+}
+
+
+/*----------  Children  ----------*/
+.NavigationPanel{
+	&__chevron{
+		$fz: 25;
+		font-size: em($fz);
+		height: em($fz, $fz);
+		@include tbma;
+		top: em(1, $fz);
+		right: em(20, $fz);
+	}
+}

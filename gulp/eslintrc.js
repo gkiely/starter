@@ -4,7 +4,8 @@
 // "warn" or 1 - turn the rule on as a warning (doesnâ€™t affect exit code)
 // "error" or 2 - turn the rule on as an error (exit code is 1 when triggered)
 // https://github.com/yannickcr/eslint-plugin-react/issues/21
-module.exports = {
+
+let lintObj = {
   "parser": "babel-eslint",
   "ecmaFeatures":{
     "classes": true,
@@ -31,14 +32,19 @@ module.exports = {
     "eqeqeq": 0,
     "no-debugger": 1,
     "no-extra-semi": 1,
+    "comma-dangle": 0,
+    "no-empty": 0,
     "no-unused-vars": [1, {"args": "none" }]  //== Don't check function args
   },
   "globals": {
     "$": 0,
+    io: 0,
     "gup": 0,
     "videojs": 0,
     "Modernizr": 0,
-    "ReactDOM": 0
+    "ReactDOM": 0,
+    "React": 0,
+    "_": 0
   },
   "env":{
     "browser": 1,
@@ -47,3 +53,7 @@ module.exports = {
     "node": 1
   }
 };
+
+
+
+module.exports = lintObj;

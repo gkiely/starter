@@ -1,0 +1,42 @@
+.Navigation{
+	height: em(50);
+	width: 100%;
+	max-width: em($page-width);
+	z-index: 100;
+}
+
+/*----------  Modifiers  ----------*/
+.Navigation{
+	&--top{
+
+	}
+	&--bottom{
+		bottom: 0;
+		position: fixed;
+		transform: translateX(-50%);
+		left: 50%;
+	}
+}
+
+
+/*----------  Children  ----------*/
+$c-navBlue: #015FB5;
+.Navigation{
+	&__item{
+		height: 100%;
+		display: block;
+		color: #fff;
+		text-align: center;
+		background: $c-navBlue;
+		text-decoration: none;
+		&:hover{
+			background: lighten($c-navBlue, 10);
+		}
+		&.active{
+			background: lighten($c-navBlue, 10);
+		}
+		&:active{
+			box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+		}
+	}
+}

@@ -1,0 +1,36 @@
+.Nav{
+  margin: 0 auto;
+  max-width: 860px;
+  // padding: em($sp-lge) 0;
+  // padding: em(10) 0;
+
+  width: 100%;
+  position: fixed;
+
+
+  margin: 0 auto;
+  max-width: 860px;
+  width: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  background: #fff;
+  z-index: 10;
+  left: 0;
+  padding-bottom: 0;
+  height: 40px;
+}
+
+nav{
+ padding: em(12) em(10) em(3) em(10);
+}
+
+
+/*================================
+=            Children            =
+================================*/
+.Nav{
+}
+
+
+/*=====  End of Children  ======*/

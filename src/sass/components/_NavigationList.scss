@@ -1,0 +1,39 @@
+.NavigationList{
+	width: 100%;
+	padding: em(10) 0;
+}
+
+
+/*----------  Children  ----------*/
+$c-navBlue: #015FB5;
+.NavigationList{
+	$root: &;
+
+	&__item{
+		display: block;
+		position: relative;
+		color: #fff;
+		background: #fff;
+		color: #0099FF;
+		text-decoration: none;
+		padding: em(10) em(20);
+		border-bottom: 1px solid #E2F1FE;
+		&:hover{
+			background: #0086FF;
+			color: #fff;
+			.fa, #{$root}__txt{
+				transition: transform .3s;
+				transform: translateX(5px);
+			}
+		}
+	}
+
+	&__icon{
+		width: em(30);
+	}
+	&__iconChevron{
+	}
+	&__txt{
+		display: inline-block;
+	}
+}

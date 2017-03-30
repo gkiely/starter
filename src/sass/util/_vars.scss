@@ -1,24 +1,62 @@
 // Layout
 //-----------------------
 $site-width: 1600;
-$page-width: 900;
+$page-width: 896;
 
 // Font sizes
 //-----------------------
 $fz-xsml: 10;
 $fz-vsml: 12;
-$fz-sml: 13;
-$fz-msml: 14;
-$fz-default: 16;
-$fz-med: 17;
-$fz-lge: 22;
+$fz-sml: 14;
+$fz-msml: 15;
+$fz-normal: 16;
+$fz-med: 18;
+$fz-lge: 24;
 $fz-vlge: 30;
 $fz-xlge: 44;
 
+
+
+
 // Colors
 //-----------------------
-$c-orange: orange;
+// $c-dark: #3e474c;
+// $c-light: #b0babf;
+// $c-lighter: #e0e0e0;
+// $c-placeholderGrey: #A9A9A9;
+// $c-blue: #46bcff;
+// $c-green: #5dd39e;
+// $c-white: #fff;
+// $c-dgrey: #565656;
+
+// $c-control: #c4c4c4;
+// $c-btnDefault: #f2f1f1;
+
+$c-lightBlue: #0087ff;
+$c-blue: #0179fe;
+
 
 // Font family
 //-----------------------
-$ff-content: 'Lato', Arial, Helvetica, sans-serif;
+// $ff-title: "Proxima Nova", Helvetica, serif;
+// $ff-content: "Proxima Nova", Arial, sans-serif;
+$ff-title: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$ff-content: 'Helvetica Neue', Arial, sans-serif;
+$ff-alt: 'Lato', Arial, sans-serif;
+
+
+
+// Spacing
+//-----------------------
+$sp-med: 25;
+$sp-mlge: 30;
+$sp-lge: 50;
+
+/*=====================================
+=            Media queries            =
+=====================================*/
+// $fromMobile: "(min-device-width: 480px)";
+// $fromTablet: "(min-device-width: 768px)";
+// $fromDesktop: "(min-width: 1024px)";
+
+/*=====  End of Media queries  ======*/

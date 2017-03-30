@@ -1,36 +1,40 @@
 var path       = require('path');
 var webpack    = require('webpack');
 
- 
 module.exports = {
-  devtool: 'cheap-module-source-map',
+  devtool: '#inline-source-map',
+  // devtool: 'cheap-module-source-map',
   cache: true,
   watch: true,
-  // debug: true,
   entry: './src/js/app/app.js',
   output: {
-    path: 'dist/js',
-    filename: 'bundle.js'
+    path: 'dist/app/js',
+    filename: 'app.js'
+  },
+  resolve:{
+    alias: {
+      '~': path.resolve(__dirname, '../'),     // Allows root folder access
+      'app': path.resolve('./src/js/app'),
+      'util': path.resolve('./src/js/util')
+    },
   },
   plugins:[
-    new webpack.ProvidePlugin({
-      Promise: 'exports?global.Promise!es6-promise',
-      fetch: 'exports?self.fetch!whatwg-fetch',
-      React: 'react',
-      ReactDOM: 'react-dom'
-    })
   ],
   module: {
     loaders: [
-      // {
-      //   test: /.js$/,
-      //   loader: 'babel-loader',
-      //   exclude: /node_modules/,
-      //   query: {
-      //     // plugins: ['jsx-html-class'], // Converts class to className, waiting on update: https://github.com/appfigures/jsx-html-class/issues/2
-      //     presets: ['es2015', 'react', 'stage-0']
-      //   }
-      // }
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react']
+        }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "class-to-classname"
+      },
     ]
   },
 };

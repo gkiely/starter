@@ -1,0 +1,74 @@
+<h2 class="Post__title">{{post.title}} - ${{post.amount}}</h2>
+ 
+<div class="Post__loanDetails">
+  <div class="Post__loanDetailsItem">
+    <a href="#user?id={{post.user_id}}" class="Post__link">{{post.uname}}</a>
+  </div>
+  <!--
+  <div>
+    <label>Loan: </label>
+    ${{post.amount}}
+  </div>
+  -->
+
+  <div class="Post__loanDetailsItem">
+    Interest: ${{post.interest}}
+  </div>
+  <div class="Post__loanDetailsItem">
+    Repayment date: {{post.repayment_date}}
+  </div>
+  <div class="Post__loanDetailsItem">
+    Status: {{post.status ? post.status : 'Unmatched'}}
+  </div>
+</div><!-- /.Post__loanDetails -->
+
+<div class="Post__desc">{{post.descr}}</div>
+
+
+
+<div class="Post__txtContainer">
+  <textarea rows="3" v-model="comment.value" class="Post__txtBox" placeholder="Write a comment">
+  </textarea>
+</div><!-- /.Post__txtContainer -->
+
+<br>
+<button @click="createComment(comment.value)" class="Post__btnComment">Comment</button> 
+
+<!-- LEND | CONIRM | REPAY -->
+<div class="Borrow-btnLend"  style="display: inline-block; vertical-align: bottom">
+  
+  <span v-show="post.user_id !== user.id && !post.status">
+    <!-- First time lending -->
+    <!-- @todo: convert to button and use href -->
+    <button class="Post__btnSuccess"
+        v-show="!user.paypal_email"
+        @click.prevent="navigateHash('lender-setup')">Lend</button>
+
+    <!-- Has lent before: skip the extra step -->
+    <button class="Post__btnSuccess"
+        v-show="user.paypal_email"
+        @click.prevent="navigateHash('confirm')">Lend</button>
+  </span>
+
+  <button class="Post__btnSuccess"
+      v-if="post.user_id === user.id && post.status === 'pending'"
+      @click.prevent="showConfirmModal('borrow')">Confirm</button>
+
+  <button class="Post__btnSuccess"
+      v-if="post.user_id === user.id && post.status === 'matched'" 
+      @click.prevent="navigateHash('confirm')">Repay</button>
+
+  <button class="Post__btnSuccess"
+      v-if="post.lender_id === user.id && post.status === 'repay'"
+      @click.prevent="botComplete">Repaid</button>
+</div>
+
+<p>&nbsp;</p><br>
+
+<div v-for="(index, item) in comments">
+  <div v-if="index > 0">-------</div>
+  <a href="#user?id={{item.user_id}}" class="Post__link">{{item.uname}}</a>:
+  <span v-if="item.is_html">{{{item.value}}}</span>
+  <span v-else>{{item.value}}</span>
+</div>
+<p>&nbsp;</p>

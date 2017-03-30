@@ -1,28 +1,134 @@
-/**
- * Putting styles here for the time being, but should probas be better orgd
- */
+body{
+ font-family: $ff-content;
+}
+
+h1, h2, h3, h4, h5, h6{
+ // font-family: $ff-title
+}
+
+.wrapper{
+   @include clearfix;
+}
 
 
-.demo{
+.pages{
+  max-width: em($page-width);
+  background: #E2F1FE;
+  position: relative;
+  // max-width: 960px;
+  margin: 0 auto;
+  padding-bottom: em(75);
+  // padding-top: 20px;
+  // @include toMobile{
+  //   padding-top: 40px;
+  // }
+}
+
+.wrapper-content{
+  padding: em(10) em(10);
+}
+
+
+html, body, .editor {
+  margin: 0;
+}
+
+
+
+.title{
+  text-align: center;
+  margin-top: 0;
+}
+
+
+.navigation{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: em(10) em(10);
+  background: #0060B6;
+  color: #fff;
+}
+.navigation-items{
 
 }
 
 
-.parent{
-  margin-bottom: 50px;
-  height: 150px;
-  background: #eee;
-  &.-center{
-    display: flex;
+
+.Site{
+  &__title{
+    $fz: 18;
+    font-size: em($fz);
+    padding-bottom: em(10, $fz);
   }
 }
 
 
-.parent__child{
-  @include wh(50);
-  background: tomato;
 
-  &.-center{
-    margin: auto;
+
+
+/*=======================================
+=            Jez's hbbtv app            =
+=======================================*/
+.showtiles {
+  display: flex;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+}
+
+.shelflist__list {
+  padding: 3px;
+}
+
+.showshelf__scroll {
+  display: table;
+  width: 45%;
+}
+
+@media screen and (min-width: 35.5em) {
+  .showshelf__scroll {
+    width: 30%;
+  }
+  .shelflist__list {
+    padding: 0 15px;
+  }
+  .navlist {
+    font-size: 1.3em;
   }
 }
+
+@media screen and (min-width: 48em) {
+  .showshelf__scroll {    
+    width: 24%;
+  }
+
+  .shelflist__list {
+    padding:0 30px;
+  }
+  .navlist {
+    font-size: 1.5em;
+  }
+
+}
+
+.showtile {  
+  margin: 0.35rem;  
+  color: #fff;
+}
+
+.showtile img {
+  display: block;
+  margin: auto;
+}
+
+.showtile h3 {
+  font-size: 0.8rem;
+}
+
+.showtile .duration {
+  float: right;
+  display: inline-block;
+}
+
+
+/*=====  End of Jez's hbbtv app  ======*/

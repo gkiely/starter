@@ -1,0 +1,38 @@
+.Header{
+	height: em(60);
+	background: $c-lightBlue;
+}
+
+
+/*----------  Children  ----------*/
+.Header{
+	display: table;
+	width: 100%;
+	position: relative;
+
+	&__title{
+		color: #fff;
+		text-align: center;
+		display: table-cell;
+		vertical-align: middle;
+		font-size: em(16);
+	}
+	&__icon-search{
+		$fz: 20;
+		font-size: em($fz);
+		height: em($fz, $fz);
+		@include tbma;
+		right: 20px;
+		color: #fff;
+		// cursor: pointer;
+	}
+
+	&__text{
+		color: #fff;
+	}
+	&__text--left{
+		left: 0;
+		@include vertical-center;
+		@include Spacing--md-h;
+	}
+}

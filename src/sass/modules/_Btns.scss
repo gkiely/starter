@@ -1,7 +1,68 @@
-%Btn{}
-%Btn-reset{
-	border: none;
-	outline: none;
-  border-radius: 0;
-  padding: 0;
+%Btn{
+  cursor: pointer;
 }
+
+// %Btn-default{
+//   touch-action: manipulation;
+//   @include resetBtn;
+//   padding: em(10) em(25);
+//   text-align: center;
+//   min-width: 120px;
+//   border-radius: 2px;
+//   &:active{
+//     // @todo: make this just a top shadow, like the one cj used to use
+
+//     // http://usabilitypost.com/2012/01/10/pressed-button-state-with-css3/
+//     box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+//   }
+// }
+
+// %Btn-info{
+//   @include module(Btn, default);
+//   @include module(Text, dark);
+//   // border: 1px solid $c-control;
+//   // border: 1px solid lighten($c-control, 10);
+//   background: $c-btnDefault;
+//   &:hover, &:focus{
+//     background: darken($c-btnDefault, 10);
+//   }
+// }
+
+// %Btn-success{
+//   @include module(Btn, default);
+//   @include module(Text, white);
+//   background: $c-green;
+//   &:hover, &:focus{
+//     background: darken($c-green, 10);
+//   }
+// }
+
+
+// @todo: button should wiggle when user submits empty comment.
+// .wiggle:hover {
+//     animation-name: wiggle;
+//     animation-duration: 0.3s; 
+// }
+
+// @keyframes wiggle {
+//   0%   {transform: translateX(2px);}
+//   20%  {transform: translateX(0);}
+//   40%  {transform: translateX(-2px);}
+//   60%  {transform: translateX(0);}
+//   80%  {transform: translateX(2px);}
+//   100% {transform: translateX(0);}
+// }
+
+// .buzz {
+//   position: relative;
+// }
+
+// .buzz:hover {
+//     animation: buzz 0.1s infinite;
+// }
+
+// @keyframes buzz {
+//   0%   {transform: translateX(2px);}
+//   50%  {transform: translateX(0px);}
+//   100% {transform: translateX(-2px);}
+// }
