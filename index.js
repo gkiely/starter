@@ -9,8 +9,7 @@ let express           = require('express');
  */
 
 let logger          = require('./server/logger');
-let brokenApi       = require('./server/break-api');
-var path            = require('path');
+let path            = require('path');
 
 
 /**
