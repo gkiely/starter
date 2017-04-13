@@ -1,31 +1,3 @@
-Windows
-=================
-
-1. Install node and git
----
-- Open powershell as admin
-- Go to here: https://chocolatey.org/install, paste script into powershell
-- After install is complete, close powershell and open cmd
-- Install nodist: `choco install nodist`
-- Install git: `choco install git`
-- Close and re-open cmd
-- Check install worked by typing `nodist`, `git --version`
-
-2. Get code 
----
-```sh
-git clone https://sevenwestmedia.visualstudio.com/_git/POC
-```
-> If the clone has permission errors, generate git credentials on visualstudio.com
-
-3. Run project
----
-```sh
-npm start
-```
-
----
-
 Mac
 =================
 1. Install node and git
@@ -42,7 +14,7 @@ http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo
 2. Get code 
 ---
 ```sh
-git clone https://sevenwestmedia.visualstudio.com/_git/POC
+git clone https://github.com/gkiely/starter.git
 ```
 > If the clone has permission errors, generate git credentials on visualstudio.com
 
@@ -52,11 +24,39 @@ git clone https://sevenwestmedia.visualstudio.com/_git/POC
 ```sh
 npm start
 ```
+---
 
 
+Windows
+=================
 
+1. Install node and git
+---
+- Open powershell as admin
+- Go to here: https://chocolatey.org/install, paste script into powershell
+- After install is complete, close powershell and open cmd
+- Install nodist: `choco install nodist`
+- Install git: `choco install git`
+- Close and re-open cmd
+- Check install worked by typing `nodist`, `git --version`
+
+2. Get code 
+---
+```sh
+git clone https://github.com/gkiely/starter.git
+```
+> If the clone has permission errors, generate git credentials on visualstudio.com
+
+3. Run project
+---
+```sh
+npm start
+```
 
 ---
+
+
+
 
 
 Common issues
