@@ -91,11 +91,7 @@ app.use(function(err, req, res, next){
 
 // -- Launch Server
 server.listen(settings.port, function(){
-  log('Server started, listening on localhost:' + settings.port);
+  let ip = require('get-my-ip')();
+  log(`Local: localhost:` + settings.port);
+  log(`LAN:   ${ip}:${settings.port}`);
 });
-
-
-
-
-
-

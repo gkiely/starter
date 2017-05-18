@@ -13,15 +13,9 @@ h1, h2, h3, h4, h5, h6{
 
 .pages{
   max-width: em($page-width);
-  background: #E2F1FE;
   position: relative;
-  // max-width: 960px;
   margin: 0 auto;
   padding-bottom: em(75);
-  // padding-top: 20px;
-  // @include toMobile{
-  //   padding-top: 40px;
-  // }
 }
 
 .wrapper-content{
