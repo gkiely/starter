@@ -4,8 +4,7 @@
   "description": "Proof of concept",
   "main": "index.js",
   "scripts": {
-    "preinstall": "npm i gulp -g & npm i npm-run-all -g",
-    "start": "npm i && npm-run-all build server",
+    "start": "npm update && npm run build && npm run server",
     "build": "gulp prod",
     "server": "gulp",
     "dev": "gulp"
