@@ -17,9 +17,9 @@ let
     webserver     = require('gulp-webserver'),
     webpack       = require('webpack'),
     newer         = require('gulp-newer'),
-    processhtml   = require('gulp-empty'),
-    htmlmin       = require("gulp-empty"),
-    apidoc        = require('gulp-empty'),
+    processhtml   = require('gulp-noop'),
+    htmlmin       = require("gulp-noop"),
+    apidoc        = require('gulp-noop'),
     minifyCSS     = function(){},
     uglify        = function(){};
 
