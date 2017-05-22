@@ -6,7 +6,7 @@ let settings = {
 
 
 /**
- * Digital Ocean
+ * Prod Env
  */
 if(process.env.PROD){
   settings = {

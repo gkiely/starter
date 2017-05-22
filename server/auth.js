@@ -65,10 +65,7 @@ passport.use(
     })
     .then(res => {
       let {email, id, uname} = user;
-
-      // If it's lendbot check the raw password
-      // @todo: probably a nicer way to handle this, but currently creating lendbot in psql, and no way to hash.
-      // @todo: clean up this code, theres alot of repetition
+      
       if(id === 0 && user.password){
         if(user.password === password){
           return done(null, {
