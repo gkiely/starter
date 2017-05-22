@@ -44,7 +44,8 @@ let lintObj = {
     "Modernizr": 0,
     "ReactDOM": 0,
     "React": 0,
-    "_": 0
+    "_": 0,
+    "Vue": 0,
   },
   "env":{
     "browser": 1,
