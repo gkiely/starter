@@ -10,7 +10,6 @@ let
     prefix        = require('gulp-autoprefixer'),
     path          = require('path'),
     join          = path.join,
-    sass          = require('gulp-sass'),
     sassGlob      = require('gulp-sass-glob'),
     shell         = require('gulp-shell'),
     sourcemaps    = require('gulp-sourcemaps'),
@@ -31,6 +30,20 @@ var handleError = function(err) {
   console.log(err.toString());
   this.emit('end');
 };
+
+
+/*====================================
+=            Require Sass            =
+====================================*/
+try{sass = require('gulp-sass')}
+catch(err){
+  console.error(`
+  ==========
+  You've changed node versions, rebuilding node-sass...
+  ==========`);
+  gulp.src('').pipe(shell(['npm rebuild node-sass']));
+}
+/*=====  End of Require Sass  ======*/
 
 
 /*============================
@@ -178,7 +191,6 @@ gulp.task('server', function(){
     script: 'index.js',
     ext: 'html js',
     ignore: ['src/*', 'dist/*', 'test/*'],
-    nodeArgs:['--harmony-async-await'],       // Needed until everyone starts using 7.6
     // execMap: {
     //   js: "node --harmony-async-await"
     // },

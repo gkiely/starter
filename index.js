@@ -1,35 +1,40 @@
 /**
  * Modules (vendor)
  */
+
+/*======================================
+=            Vendor imports            =
+======================================*/
+let cookieParser      = require('cookie-parser');
+let bodyParser        = require('body-parser');
 let express           = require('express');
+let expressValidator  = require('express-validator');
+let session           = require('express-session');
+let pgp               = require('pg-promise')();
+let pgSession         = require('connect-pg-simple')(session);
+let pwd               = require('pwd');
+/*=====  End of Vendor imports  ======*/
 
 
-/**
- * Modules (app)
- */
 
+/*===================================
+=            App imports            =
+===================================*/
 let logger          = require('./server/logger');
 let path            = require('path');
+/*=====  End of App imports  ======*/
 
+/*=============================
+=            Setup            =
+=============================*/
+global.__base   = __dirname + '/';
+let settings    = require('./server/settings');
 
-/**
- * Globals
- */
-global.__base = __dirname + '/';
-
-/**
- * Settings
- */
-let settings = require('./server/settings');
-
-
-/**
- * Instances
- */
 let app         = express();
 let router      = express.Router();
 let server      = require('http').Server(app);
-let _           = require('lodash');
+let db          = pgp(settings.postgres);
+/*=====  End of Setup  ======*/
 
 
 
@@ -40,14 +45,48 @@ let {extend, clone, log, handleQuery, handleResp, handleCatch, requireJson} = re
 // ==== End of Helpers ====
 
 
-/*=====================================
-=            Server Config            =
-=====================================*/
+
+/*====================================
+=            Server Setup            =
+====================================*/
 if(settings.debug){
   app.use(logger);
 }
-// app.use(brokenApi);
-/*=====  End of Server Config  ======*/
+let cookieExpire  = 365; // Days before login cookie expires
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(expressValidator());
+app.use(session({
+  secret: 'securedsession',
+  resave: false,
+  saveUninitialized: true,
+  store: new pgSession({
+    pgPromise: db
+  }),
+  cookie: {
+    maxAge: new Date(Date.now() + (60 * 60 * 24 * cookieExpire * 1000)).getTime()
+  }
+}));
+
+if(settings.debug){
+  app.use(logger);
+}
+
+// if(settings.debug){
+//   app.use('/app', express.static('dist/app'));
+//   app.use('/landing', express.static('dist/landing'));
+// }
+// else{
+// }
+
+// app.get('/', function(req, res){
+//   res.sendFile(__dirname + '/dist/index.html');
+// });
+/*=====  End of Server Setup  ======*/
+
 
 
 
@@ -66,6 +105,11 @@ app.get('/page', function(req, res, next){
 
 router.get('/app', function(req, res, next){
   return handleResp(res, {});
+});
+
+router.get('/test', function(req, res, next){
+  var query = db.query('select * from user_view');
+  handleQuery(res, query);
 });
 
 /*=====  End of Api  ======*/

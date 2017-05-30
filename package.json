@@ -1,7 +1,7 @@
 {
-  "name": "poc",
+  "name": "userfeedback",
   "version": "1.0.0",
-  "description": "Proof of concept",
+  "description": "User feedback form and voting site",
   "main": "index.js",
   "scripts": {
     "start": "npm update && npm run build && npm run server",
@@ -39,14 +39,22 @@
     "gulp-uglify": "1.5.1",
     "gulp-webserver": "0.9.1",
     "jsx-html-class": "^1.0.3",
+    "store": "^2.0.4",
     "webpack": "1.13.1"
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "body-parser": "^1.17.2",
+    "connect-pg-simple": "^4.2.0",
+    "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.6",
     "express": "^4.14.1",
+    "express-session": "^1.15.3",
+    "express-validator": "^3.2.0",
     "lodash": "^4.17.4",
+    "pg-promise": "^5.8.1",
+    "pwd": "^1.1.0",
     "rc-progress": "^2.1.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

@@ -19,7 +19,15 @@ git clone https://github.com/gkiely/starter.git
 > If the clone has permission errors, generate git credentials on visualstudio.com
 
 
-3. Run project
+3. Setup db (optional)
+--
+```sh
+psql
+create database myDatabase
+```
+- Then update settings.js to point to 'myDatabase'
+
+4. Run project
 ---
 ```sh
 npm start
@@ -47,7 +55,15 @@ git clone https://github.com/gkiely/starter.git
 ```
 > If the clone has permission errors, generate git credentials on visualstudio.com
 
-3. Run project
+3. Setup db (optional)
+--
+```sh
+psql
+create database myDatabase
+```
+- Then update settings.js to point to 'myDatabase'
+
+4. Run project
 ---
 ```sh
 npm start
