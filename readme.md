@@ -20,12 +20,13 @@ git clone https://github.com/gkiely/starter.git
 
 
 3. Setup db (optional)
---
+---
 ```sh
 psql
 create database myDatabase
 ```
 - Then update settings.js to point to 'myDatabase'
+
 
 4. Run project
 ---
