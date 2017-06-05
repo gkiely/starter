@@ -174,43 +174,17 @@ gulp.task('lint:js', function () {
 =            Server            =
 ==============================*/
 gulp.task('server', function(){
-  // var ip = require('get-my-ip')();
-  //=== Dev server
-  // var stream = gulp.src(config.dist);
-  // stream.pipe(webserver());
-  // if(ip){
-  //   stream.pipe(webserver({
-  //       host: ip,
-  //       livereload: true
-  //   }));
-  // }
+  let stream = gulp.src('');
 
-
-
-  let stream = nodemon({
+  nodemon({
     script: 'index.js',
     ext: 'html js',
     ignore: ['src/*', 'dist/*', 'test/*'],
-    // execMap: {
-    //   js: "node --harmony-async-await"
-    // },
   });
 
-  //== Node inspect
-  // let stream = nodemon({
-  //   exec: 'node --inspect',
-  //   script: 'index.js',
-  //   ext: 'html js',
-  //   ignore: ['src/*', 'dist/*', 'test/*']
-  // })
-  // .on('start', ['']);
-
-  //=== nodejs server
   // stream.pipe(shell([
-  //   `nodemon --debug --ignore src/ --ignore dist/ --ignore test/ & 
-  //   node-inspector --preload false`
+  //   'open -a Postgres'
   // ]));
-
 });
 
 
