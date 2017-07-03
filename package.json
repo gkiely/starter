@@ -16,8 +16,8 @@
     "test:coverage" : "jest --coverage",
     "server:dev"    : "gulp",
     "server:prod"   : "",
-    "start"         : "npm run setup && npm-run-all clean --parallel test dll:dev libsass --sequential build:dev server:dev",
-    "production"    : "npm run setup && npm-run-all clean --parallel test dll:prod --sequential build:prod"
+    "start"         : "npm run setup && npm-run-all clean --parallel test dll:dev libsass build:dev --sequential server:dev",
+    "production"    : "npm run setup && npm-run-all clean --parallel test dll:prod build:prod"
   },
   "devDependencies": {
     "babel-core": "6.9.1",
