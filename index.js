@@ -88,9 +88,9 @@ if(settings.debug){
 // else{
 // }
 
-// app.get('/', function(req, res){
-//   res.sendFile(__dirname + '/dist/index.html');
-// });
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/dist/index.html');
+});
 /*=====  End of Server Setup  ======*/
 
 
