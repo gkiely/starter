@@ -9,10 +9,12 @@ let cookieParser      = require('cookie-parser');
 let bodyParser        = require('body-parser');
 let express           = require('express');
 let expressValidator  = require('express-validator');
-let session           = require('express-session');
-let pgp               = require('pg-promise')();
-let pgSession         = require('connect-pg-simple')(session);
-let pwd               = require('pwd');
+
+// Postgres
+// let session           = require('express-session');
+// let pgp               = require('pg-promise')();
+// let pgSession         = require('connect-pg-simple')(session);
+// let pwd               = require('pwd');
 /*=====  End of Vendor imports  ======*/
 
 
@@ -33,7 +35,9 @@ let settings    = require('./server/settings');
 let app         = express();
 let router      = express.Router();
 let server      = require('http').Server(app);
-let db          = pgp(settings.postgres);
+
+// Postgres
+// let db          = pgp(settings.postgres);
 /*=====  End of Setup  ======*/
 
 
@@ -59,17 +63,19 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(expressValidator());
-app.use(session({
-  secret: 'securedsession',
-  resave: false,
-  saveUninitialized: true,
-  store: new pgSession({
-    pgPromise: db
-  }),
-  cookie: {
-    maxAge: new Date(Date.now() + (60 * 60 * 24 * cookieExpire * 1000)).getTime()
-  }
-}));
+
+// Postgres session
+// app.use(session({
+//   secret: 'securedsession',
+//   resave: false,
+//   saveUninitialized: true,
+//   store: new pgSession({
+//     pgPromise: db
+//   }),
+//   cookie: {
+//     maxAge: new Date(Date.now() + (60 * 60 * 24 * cookieExpire * 1000)).getTime()
+//   }
+// }));
 
 if(settings.debug){
   app.use(logger);
@@ -131,11 +137,13 @@ app.use('/api', router);
 app.use(function(err, req, res, next){
   console.error(err.stack);
   res.status(500).send(err);
-})
+});
 
 // -- Launch Server
 server.listen(settings.port, function(){
   let ip = require('get-my-ip')();
+  log(`=========================`)
   log(`Local: localhost:` + settings.port);
   log(`LAN:   ${ip}:${settings.port}`);
+  log(`=========================`)
 });
