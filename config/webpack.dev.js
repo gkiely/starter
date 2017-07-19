@@ -8,7 +8,7 @@ module.exports = {
   watch: true,
   entry: './src/js/app/app.js',
   output: {
-    path: 'dist/app/js',
+    path: 'dist/js',
     filename: 'app.js'
   },
   resolve:{
