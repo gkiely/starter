@@ -1,7 +1,7 @@
 {
-  "name": "userfeedback",
+  "name": "Starter",
   "version": "1.0.0",
-  "description": "User feedback form and voting site",
+  "description": "Starter for front end projects",
   "main": "index.js",
   "scripts": {
     "build:dev"     : "gulp dev",
