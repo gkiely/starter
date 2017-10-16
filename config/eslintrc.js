@@ -46,6 +46,7 @@ let lintObj = {
     "React": 0,
     "_": 0,
     "Vue": 0,
+    "firebase": 0,
   },
   "env":{
     "browser": 1,
