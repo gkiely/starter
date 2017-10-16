@@ -10,7 +10,7 @@
     "dll:dev": "webpack --config config/webpack.dev.dll.js",
     "dll:prod": "webpack --config config/webpack.prod.dll.js",
     "libsass": "npm rebuild node-sass",
-    "setup": "yarn || npm i yarn -g && yarn",
+    "setup": "yarn || (npm i yarn -g && yarn)",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
