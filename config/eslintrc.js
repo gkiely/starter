@@ -34,7 +34,7 @@ let lintObj = {
     "no-extra-semi": 1,
     "comma-dangle": 0,
     "no-empty": 0,
-    "no-unused-vars": [1, {"args": "none" }]  //== Don't check function args
+    "no-unused-vars": [1, {"args": "none" , "varsIgnorePattern": "React|log|gup"}]  //== Don't check function args
   },
   "globals": {
     "$": 0,
@@ -47,6 +47,8 @@ let lintObj = {
     "_": 0,
     "Vue": 0,
     "firebase": 0,
+    "gup": 0,
+    "log": 0
   },
   "env":{
     "browser": 1,

@@ -18,7 +18,6 @@ let {log}             = require('util/helpers');
 /*=============================
 =            Setup            =
 =============================*/
-let host    = window.location.hostname;
 /*=====  End of Setup  ======*
 
 /*===========================

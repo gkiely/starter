@@ -9,14 +9,14 @@
     "clean": "rimraf ./dist",
     "dll:dev": "webpack --config config/webpack.dev.dll.js",
     "dll:prod": "webpack --config config/webpack.prod.dll.js",
-    "libsass": "npm rebuild node-sass",
+    "libsass": "rebuild-node-sass",
     "setup": "yarn || (npm i yarn -g && yarn)",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "server:dev": "gulp",
     "server:prod": "",
-    "start": "npm run setup && npm-run-all clean --parallel test dll:dev libsass build:dev --sequential server:dev",
+    "start": "npm run setup && npm-run-all clean libsass --parallel test dll:dev build:dev --sequential server:dev",
     "production": "npm run setup && npm-run-all clean --parallel test dll:prod build:prod"
   },
   "devDependencies": {
@@ -51,6 +51,7 @@
     "gulp-webserver": "0.9.1",
     "jsx-html-class": "^1.0.3",
     "npm-run-all": "^4.0.2",
+    "rebuild-node-sass": "^1.1.0",
     "rimraf": "^2.6.1",
     "store": "^2.0.4",
     "webpack": "1.13.1"

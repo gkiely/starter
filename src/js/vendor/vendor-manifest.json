@@ -1,4 +1,6 @@
 {
   "name": "vendor",
-  "content": {}
+  "content": {
+    "./src/js/vendor/vendor.js": 1
+  }
 }
