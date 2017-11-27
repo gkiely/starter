@@ -59,15 +59,25 @@ passport.use(
     let user;
     console.log("Passport: LocalStrategy");
     return db.one("SELECT id, uname, email, password, salt, hash FROM users WHERE email=$1", [email])
-    .then(res => {
-      user = res;
-      return pwd.hash(password, res.salt);
-    })
-    .then(res => {
-      let {email, id, uname} = user;
+      .then(res => {
+        user = res;
+        return pwd.hash(password, res.salt);
+      })
+      .then(res => {
+        let {email, id, uname} = user;
       
-      if(id === 0 && user.password){
-        if(user.password === password){
+        if(id === 0 && user.password){
+          if(user.password === password){
+            return done(null, {
+              email, id, uname
+            });
+          }
+          else{
+            return done('Login details were incorrect');
+          }
+        }
+        else if(user.hash === res.hash ){
+        // Return user object
           return done(null, {
             email, id, uname
           });
@@ -75,21 +85,11 @@ passport.use(
         else{
           return done('Login details were incorrect');
         }
-      }
-      else if(user.hash === res.hash ){
-        // Return user object
-        return done(null, {
-          email, id, uname
-        });
-      }
-      else{
-        return done('Login details were incorrect');
-      }
-    })
-    .catch((err) => {
-      return done(err);
-    });
-}));
+      })
+      .catch((err) => {
+        return done(err);
+      });
+  }));
 
 passport.serializeUser(function(user, done) {
   console.log('Passport: serializeUser');

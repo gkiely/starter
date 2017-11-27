@@ -18,7 +18,6 @@ let expressValidator  = require('express-validator');
 /*=====  End of Vendor imports  ======*/
 
 
-
 /*===================================
 =            App imports            =
 ===================================*/
@@ -41,13 +40,16 @@ let server      = require('http').Server(app);
 /*=====  End of Setup  ======*/
 
 
-
 /*===============================
 =            Helpers            =
 ===============================*/
-let {extend, clone, log, handleQuery, handleResp, handleCatch, requireJson} = require('./server/helpers');
+let {
+  log, 
+  // handleQuery, 
+  handleResp, 
+  // handleCatch
+} = require('./server/helpers');
 // ==== End of Helpers ====
-
 
 
 /*====================================
@@ -56,7 +58,6 @@ let {extend, clone, log, handleQuery, handleResp, handleCatch, requireJson} = re
 if(settings.debug){
   app.use(logger);
 }
-let cookieExpire  = 365; // Days before login cookie expires
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -64,6 +65,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(expressValidator());
 
+// let cookieExpire  = 365; // Days before login cookie expires
 // Postgres session
 // app.use(session({
 //   secret: 'securedsession',
@@ -95,9 +97,6 @@ app.use('/', express.static('dist'));
 /*=====  End of Server Setup  ======*/
 
 
-
-
-
 /*===========================
 =            API            =
 ===========================*/
@@ -119,11 +118,6 @@ router.get('/test', function(req, res, next){
 });
 
 /*=====  End of Api  ======*/
-
-
-
-
-
 
 
 /*==============================

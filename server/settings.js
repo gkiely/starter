@@ -19,7 +19,6 @@
 // module.exports = settings;
 
 
-
 // Database Driven
 require('dotenv').config();
 let settings = {

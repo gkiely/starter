@@ -5,10 +5,6 @@ let uuid        = require('uuid/v4');
 
 
 let helpers = {
-  // uid() {
-  //     // http://stackoverflow.com/questions/6248666/how-to-generate-short-uid-like-ax4j9z-in-js
-  //     return ("0000" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4)
-  // },
   addComponent(obj, {id, component, json}){
     let result = clone(obj);
     result.layout.push({
@@ -33,18 +29,18 @@ let helpers = {
   },
   handleQuery(res, query, count){
     return query
-    .then(function(data){
-      if(count){
-        res.send(data[0].count);
-      }
-      else{
-        res.send(data);
-      }
-      return data;
-    })
-    .catch(e => {
-      helpers.handleCatch(res, e.message);
-    });
+      .then(function(data){
+        if(count){
+          res.send(data[0].count);
+        }
+        else{
+          res.send(data);
+        }
+        return data;
+      })
+      .catch(e => {
+        helpers.handleCatch(res, e.message);
+      });
   },
   handleResp(res, data){
     return res.send(data);
@@ -64,22 +60,14 @@ let helpers = {
 
     console.error(msg);
     return res.status(code)
-    .send({message: msg})
+      .send({message: msg})
   },
   getId(){
     return uuid().substr(0, 7);
   },
-  uuid: uuid,
   rmw(str){
     return str.replace(/\n|\s*/g, '');
-  },
-  /**
-   * Requires json without worrying about path
-   */
-  requireJson(str){
-    return require(path.join(__json, str));
-  },
-
+  }
 };
 
 

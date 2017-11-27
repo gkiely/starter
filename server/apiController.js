@@ -9,7 +9,7 @@ let apiController = {
   /**
    * Paypal
    */
-  paypal:{
+  paypal: {
     get(amount, url) {
       let {client_id, client_secret, cancel_url, return_url} = secrets.paypal;
       paypal.configure({mode: 'sandbox', client_id, client_secret});

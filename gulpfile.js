@@ -1,31 +1,30 @@
 let 
-    concat        = require('gulp-concat'),
-    config        = require('./config/gulp-config.js'),
-    eslint        = require('gulp-eslint'),
-    es            = require('event-stream'),
-    fileInclude   = require('gulp-file-include'),
-    gulp          = require('gulp'),
-    gulpif        = require('gulp-if'),
-    nodemon       = require('gulp-nodemon'),
-    livereload    = require('gulp-livereload'),
-    prefix        = require('gulp-autoprefixer'),
-    path          = require('path'),
-    join          = path.join,
-    sass          = require('gulp-sass')
-    sassGlob      = require('gulp-sass-glob'),
-    shell         = require('gulp-shell'),
-    sourcemaps    = require('gulp-sourcemaps'),
-    webserver     = require('gulp-webserver'),
-    webpack       = require('webpack'),
-    newer         = require('gulp-newer'),
-    processhtml   = require('gulp-noop'),
-    htmlmin       = require("gulp-noop"),
-    apidoc        = require('gulp-noop'),
-    uuid          = require('uuid'),
-    // sequence      = require('gulp-sequence'),
-    minifyCSS     = function(){},
-    uglify        = function(){};
-
+  concat        = require('gulp-concat'),
+  config        = require('./config/gulp-config.js'),
+  eslint        = require('gulp-eslint'),
+  es            = require('event-stream'),
+  fileInclude   = require('gulp-file-include'),
+  gulp          = require('gulp'),
+  gulpif        = require('gulp-if'),
+  nodemon       = require('gulp-nodemon'),
+  livereload    = require('gulp-livereload'),
+  prefix        = require('gulp-autoprefixer'),
+  path          = require('path'),
+  join          = path.join,
+  sass          = require('gulp-sass')
+sassGlob      = require('gulp-sass-glob'),
+shell         = require('gulp-shell'),
+sourcemaps    = require('gulp-sourcemaps'),
+webserver     = require('gulp-webserver'),
+webpack       = require('webpack'),
+newer         = require('gulp-newer'),
+processhtml   = require('gulp-noop'),
+htmlmin       = require("gulp-noop"),
+apidoc        = require('gulp-noop'),
+uuid          = require('uuid'),
+sequence      = require('gulp-sequence'),
+minifyCSS     = function(){},
+uglify        = function(){};
 
 
 /*===============================
@@ -67,24 +66,24 @@ gulp.task('html', function(){
     processhtml = require('gulp-processhtml');
   }
   gulp.src(config.html.src)
-  .pipe(fileInclude({
-    prefix: '@@',
-    basepath: './src/html',
-    context: {
-      version: uuid().substr(0, 7) // @TODO: use the build version, first we need to find it on process.env
-    }
-  }))
-  .pipe(gulpif(prod, processhtml()))
-  .pipe(gulpif( prod, htmlmin({
+    .pipe(fileInclude({
+      prefix: '@@',
+      basepath: './src/html',
+      context: {
+        version: uuid().substr(0, 7) // @TODO: use the build version, first we need to find it on process.env
+      }
+    }))
+    .pipe(gulpif(prod, processhtml()))
+    .pipe(gulpif( prod, htmlmin({
       // minifyJs: true,
       collapseWhitespace: true,
       removeComments: true,
-      processScripts:['x/template', 'text/x-template']
+      processScripts: ['x/template', 'text/x-template']
     })
-  ))
-  .on('error', handleError)
-  .pipe(livereload())
-  .pipe(gulp.dest(config.dist))
+    ))
+    .on('error', handleError)
+    .pipe(livereload())
+    .pipe(gulp.dest(config.dist))
 });
 
 
@@ -133,38 +132,34 @@ gulp.task('js:lib', cb => {
 ============================*/
 gulp.task('sass:app', function(){
   gulp.src(config.sass.src.app)
-  .pipe(sassGlob())
-  .pipe(sourcemaps.init())
-  .pipe(sass( {
-    style:'compressed',
-    precision: 10
-  }))
-  .on('error', handleError)
-  .pipe(prefix())
-  .on('error', handleError)
-  .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest(config.sass.dist))
+    .pipe(sassGlob())
+    .pipe(sourcemaps.init())
+    .pipe(sass( {
+      style: 'compressed',
+      precision: 10
+    }))
+    .on('error', handleError)
+    .pipe(prefix())
+    .on('error', handleError)
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(config.sass.dist))
 });
 
 gulp.task('sass:lib', function(){
   gulp.src(config.sass.src.lib)
   // .pipe(sassGlob())
-  .pipe(sourcemaps.init())
-  .pipe(sass({
-    style:'compressed',
-    precision: 10,
-  }))
-  .on('error', handleError)
-  .pipe(prefix())
-  .on('error', handleError)
-  .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest(config.sass.dist))
+    .pipe(sourcemaps.init())
+    .pipe(sass({
+      style: 'compressed',
+      precision: 10,
+    }))
+    .on('error', handleError)
+    .pipe(prefix())
+    .on('error', handleError)
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(config.sass.dist))
 });
 /*=====  End of SASS  ======*/
-
-
-
-
 
 
 /*===============================
@@ -174,7 +169,6 @@ gulp.task('sass:lib', function(){
 // https://github.com/adametry/gulp-eslint/issues/99
 let cache         = require('gulp-cached');
 let through2      = require('through2');
-let esconfig      = require('./config/eslintrc.js');
 let eslintPassed;
 
 // Check if a file has any errors or warnings
@@ -183,31 +177,31 @@ let fileHasErrors = function(file) {
 };
 
 let uncache = function(cacheName) {
-    // Create a stream that removes files from cache
-    return through2.obj(function (file, enc, done) {
-        if (cache.caches[cacheName]) {
-            delete cache.caches[cacheName][file.path];
-        }
-        done(null, file);
-    });
+  // Create a stream that removes files from cache
+  return through2.obj(function (file, enc, done) {
+    if (cache.caches[cacheName]) {
+      delete cache.caches[cacheName][file.path];
+    }
+    done(null, file);
+  });
 };
 
 gulp.task('lint:js', function () {
   return gulp.src(config.js.watch)
-  .pipe(gulpif(!prod, cache('lint-cache')))
-  .pipe(eslint(esconfig))
-  .pipe(eslint.format())
-  .pipe(gulpif(!prod, gulpif(fileHasErrors, uncache('lint-cache'))))
-  .pipe(eslint.result(function(result){
-    if(result.errorCount > 0){
-      eslintPassed = false;
-    }
-    else{
-      eslintPassed = true;
-    }
-  }))
-  .pipe(eslint.failAfterError())
-  .on('error', handleError)
+    .pipe(gulpif(!prod, cache('lint-cache')))
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(gulpif(!prod, gulpif(fileHasErrors, uncache('lint-cache'))))
+    .pipe(eslint.result(function(result){
+      if(result.errorCount > 0){
+        eslintPassed = false;
+      }
+      else{
+        eslintPassed = true;
+      }
+    }))
+    .pipe(eslint.failAfterError())
+    .on('error', handleError)
 });
 /*=====  End of Linting  ======*/
 
@@ -218,12 +212,11 @@ gulp.task('lint:js', function () {
 gulp.task('copy', function(){
   let dist = config.copy.dist;
   return es.merge(config.copy.src.map((src, i) => {
-      return gulp.src(src)
+    return gulp.src(src)
       .pipe(gulp.dest(dist[i]));
   }));
 });
 /*=====  End of Copy  ======*/
-
 
 
 /*==============================
@@ -269,19 +262,12 @@ gulp.task('watch', function(){
   livereload.listen();
 });
 
-gulp.task('init', function(){
-  // Usually this is already set by NODE_ENV, this is to handle running gulp prod directly
-  prod = true;
-});
-
-
 /*==============================
 =            Builds            =
 ==============================*/
 gulp.task('default', ['watch', 'server']);
-gulp.task('dev', ['sass:app', 'sass:lib', 'html', 'copy']);
+gulp.task('dev', sequence(['sass:app', 'sass:lib', 'html',  'copy'], 'default'));
 gulp.task('prod', ['init', 'sass:app', 'sass:lib', 'html', 'copy']);
 /*=====  End of Builds  ======*/
-
 
 

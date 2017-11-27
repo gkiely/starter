@@ -1,0 +1,67 @@
+{
+  "parser": "babel-eslint",
+  "plugins":[
+    "react"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures":{
+      "classes": true,
+      "jsx": true,
+      "forOf": false
+    },
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "react/jsx-uses-vars": 1,
+    "guard-for-in": 0,
+    "no-mixed-spaces-and-tabs": 0,
+    "no-console": 1,
+    "no-alert": 0,
+    "no-bitwise": [0, { "allow": ["~"] }],    //== Allow ~str.indexOf()
+    "camelcase": 0,
+    "eqeqeq": 0,
+    "no-debugger": 1,
+    "no-extra-semi": 1,
+    "comma-dangle": 0,
+    "no-empty": 0,
+    "no-unused-vars": [1, {"args": "none", "varsIgnorePattern": "React|log|gup"}],  // Don"t check function arguments, ignore some common used variables.
+    "indent": ["warn", 2],
+    "key-spacing": ["warn", {"mode": "minimum"}],
+    "no-multiple-empty-lines": [1, {"max": 2}]
+  },
+  "globals": {
+    "$": false,
+    "io": true,
+    "gup": false,
+    "videojs": false,
+    "Modernizr": false,
+    "ReactDOM": false,
+    "React": false,
+    "_": false,
+    "axios": false,
+    "Hls": false,
+    // Jest globals
+    "jest": false,
+    "define": false,
+    "describe": false,
+    "it": false,
+    "test": false,
+    "expect": false,
+    "bc": false,
+    "shallow": false,
+    "beforeEach": false,
+    "beforeAll": false,
+    // End Jest globals
+    "YSSessionManager": false,
+    "YSPlayerEvents": false,
+    "navigator": false
+  },
+  "env":{
+    "browser": true,
+    "es6": true,
+    "jquery": true,
+    "node": true
+  }
+}
