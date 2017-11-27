@@ -1,7 +1,10 @@
 /*======================================
 =            Vendor Imports            =
 ======================================*/
-import axios from 'axios';
+// import axios from 'axios';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import createClass from 'create-react-class';
 /*=====  End of Vendor Imports  ======*/
 
 /*===================================
@@ -22,6 +25,18 @@ import axios from 'axios';
 /*=================================
 =            Component            =
 =================================*/
+let App = createClass({
+  render(){
+    return (
+      <div>Starter Template</div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <App />,
+  document.querySelector('#app')
+);
 /*=====  End of Component  ======*/
 
 /*==============================
