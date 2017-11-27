@@ -267,7 +267,7 @@ gulp.task('watch', function(){
 ==============================*/
 gulp.task('default', ['watch', 'server']);
 gulp.task('dev', sequence(['sass:app', 'sass:lib', 'html',  'copy'], 'default'));
-gulp.task('prod', ['init', 'sass:app', 'sass:lib', 'html', 'copy']);
+gulp.task('prod', ['sass:app', 'sass:lib', 'html', 'copy']);
 /*=====  End of Builds  ======*/
 
 
