@@ -3,6 +3,7 @@ let join  = path.join;
 let src   = path.join.bind(path, './src');
 let dist  = path.join.bind(path, './dist');
 let paths = { src: 'src', dist: 'dist'};
+let prod = process.env.NODE_ENV === 'production';
 
 
 /*==============================
@@ -58,11 +59,10 @@ let config = {
 ===============================*/
 config.webpack = {
   dev:    require('./webpack.dev.js'),
+  devdll: require('./webpack.dev.dll.js'),
   prod:   require('./webpack.prod.js'),
   dll:    require('./webpack.prod.dll.js'),
-  devdll: require('./webpack.dev.dll.js'),
 };
-
 /*=====  End of Webpack  ======*/
 
 

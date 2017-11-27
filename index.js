@@ -115,8 +115,7 @@ router.get('/app', function(req, res, next){
 });
 
 router.get('/test', function(req, res, next){
-  var query = db.query('select * from user_view');
-  handleQuery(res, query);
+  handleResp(res, {success: 1})
 });
 
 /*=====  End of Api  ======*/

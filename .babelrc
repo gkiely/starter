@@ -1,0 +1,35 @@
+{
+  "presets": ["env", "react"],
+  "env": {
+    "production": {
+      "plugins": [
+        "transform-react-remove-prop-types"
+      ]
+    }
+  },
+  "plugins": [
+    "react-html-attrs",
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "elements":   "./src/js/app/elements",
+          "modules":  "./src/js/app/modules",
+          "components": "./src/js/app/components",
+          "containers": "./src/js/app/containers",
+          "sections":   "./src/js/app/sections",
+          "utils":    "./src/js/utils",
+          "helpers": "./src/js/utils/helpers",
+          "api":    "./src/js/app/api.js",
+          "app":    "./src/js/app",
+          "tracking": "./src/js/utils/tracking",
+          "services": "./src/js/app/services",
+          "common": "./common",
+          "actions": "./src/js/app/actions",
+          "reducers": "./src/js/app/reducers",
+          "vendor": "./src/vendor",
+        }
+      }
+    ]
+  ]
+}

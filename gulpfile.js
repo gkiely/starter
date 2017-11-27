@@ -11,7 +11,7 @@ let
     prefix        = require('gulp-autoprefixer'),
     path          = require('path'),
     join          = path.join,
-    sass          = function(){},
+    sass          = require('gulp-sass')
     sassGlob      = require('gulp-sass-glob'),
     shell         = require('gulp-shell'),
     sourcemaps    = require('gulp-sourcemaps'),
@@ -55,22 +55,6 @@ else{
   compiler = webpack(config.webpack.dev);
   dllcompiler = webpack(config.webpack.devdll);
 }
-
-// Require sass
-// Changing node versions requires a node-sass rebuild
-try{
-  sass = require('gulp-sass')
-}
-catch(err){
-  console.log(`
-==========
-You've changed node versions, rebuilding node-sass...
-If this fails run \`npm rebuild node-sass\`
-==========`);
-  gulp.src('').pipe(shell(['npm rebuild node-sass && gulp dev']));
-  return;
-}
-
 /*=====  End of Setup  ======*/
 
 
@@ -295,8 +279,8 @@ gulp.task('init', function(){
 =            Builds            =
 ==============================*/
 gulp.task('default', ['watch', 'server']);
-gulp.task('dev', ['sass:app', 'sass:lib', 'html', 'js', 'copy']);
-gulp.task('prod', ['init', 'sass:app', 'sass:lib', 'html', 'js', 'copy']);
+gulp.task('dev', ['sass:app', 'sass:lib', 'html', 'copy']);
+gulp.task('prod', ['init', 'sass:app', 'sass:lib', 'html', 'copy']);
 /*=====  End of Builds  ======*/
 
 

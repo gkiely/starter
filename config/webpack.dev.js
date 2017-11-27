@@ -1,40 +1,35 @@
-var path       = require('path');
-var webpack    = require('webpack');
+let path       = require('path');
+let webpack    = require('webpack');
+let rootDir    = process.cwd();
+var resolve    = path.join.bind(path, rootDir);
 
 module.exports = {
-  devtool: '#inline-source-map',
-  // devtool: 'cheap-module-source-map',
-  cache: true,
-  watch: true,
+  devtool: 'inline-source-map',
   entry: './src/js/app/app.js',
   output: {
-    path: 'dist/js',
-    filename: 'app.js'
+    filename: 'app.js',
+    path: resolve('dist/js'),
   },
   resolve:{
     alias: {
-      '~': path.resolve(__dirname, '../'),     // Allows root folder access
-      'app': path.resolve('./src/js/app'),
-      'util': path.resolve('./src/js/util')
+      '~': rootDir, // Allows root folder access
     },
   },
   plugins:[
+    new webpack.DllReferencePlugin({
+      context: rootDir,
+      manifest: require(resolve('src/js/vendor/vendor-manifest.json'))
+    })
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react']
-        }
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "class-to-classname"
-      },
+        loader: 'babel-loader?cacheDirectory',
+        include: [resolve('src')],
+        exclude: [resolve('node_modules')],
+        loader: "babel-loader"
+      }
     ]
   },
 };
