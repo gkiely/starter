@@ -1,6 +1,8 @@
 /*======================================
 =            Vendor Imports            =
 ======================================*/
+import React from 'react';
+import createClass from 'create-react-class';
 /*=====  End of Vendor Imports  ======*/
 
 /*===================================
@@ -21,6 +23,13 @@
 /*=================================
 =            Component            =
 =================================*/
+export default createClass({
+  render(){
+    return (
+      <div></div>
+    );
+  }
+});
 /*=====  End of Component  ======*/
 
 /*==================================
