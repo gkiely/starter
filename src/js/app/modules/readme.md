@@ -1,0 +1,1 @@
+Modules are groupings of elements, that are shared by components.

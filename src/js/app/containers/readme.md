@@ -1,0 +1,1 @@
+Containers can contain application logic for the component.

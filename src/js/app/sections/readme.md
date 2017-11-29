@@ -1,0 +1,1 @@
+Sections are used for component layout, and for grouping components in layout. They are purely for UI purposes.
