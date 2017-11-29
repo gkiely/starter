@@ -55,9 +55,6 @@ let {
 /*====================================
 =            Server Setup            =
 ====================================*/
-if(settings.debug){
-  app.use(logger);
-}
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -80,20 +77,31 @@ app.use(expressValidator());
 // }));
 
 if(settings.debug){
+  let serveIndex  = require('serve-index');
+  let EJS         = require('ejs');
+  let {
+    handleResp,
+    handleCatch,
+  }               = require('./server/helpers');
+
   app.use(logger);
+  // app.use('/design', express.static('design'));
+  app.use('/design/:img/2x', (req, res, next) => {
+    let url = req.originalUrl.replace('/2x', '');
+
+    EJS.renderFile("./server/design.ejs", { url }, (err, result) => {
+      if (err) {
+        handleCatch(res, `Failed to generate HTML for debug page! ${err}`, 500);
+      } else {
+        handleResp(res, result);
+      }
+    });
+  });
+  app.use('/design', serveIndex('design', {icons: true}));
+  app.use('/design', express.static('design'));
 }
 
-// if(settings.debug){
-//   app.use('/app', express.static('dist/app'));
-//   app.use('/landing', express.static('dist/landing'));
-// }
-// else{
-// }
-
 app.use('/', express.static('dist'));
-// app.get('/', function(req, res){
-//   res.sendFile(__dirname + '/dist/index.html');
-// });
 /*=====  End of Server Setup  ======*/
 
 

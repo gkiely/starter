@@ -59,7 +59,8 @@
     "npm-run-all": "^4.0.2",
     "rebuild-node-sass": "^1.1.0",
     "rimraf": "^2.6.1",
-    "webpack": "^3.8.1"
+    "webpack": "^3.8.1",
+    "serve-index": "^1.9.1"
   },
   "dependencies": {
     "axios": "^0.17.1",

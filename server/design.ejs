@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <style>
+      html, body{
+        margin: 0;
+      }
+    </style>
+    <script>
+      function updateImageSize(e){
+        var img = document.querySelector('img');
+        img.style.height = img.height / 2;
+      }
+      window.onload = updateImageSize;
+    </script>
+  </head>
+  <body>
+  <img src="<%= url %>" onload="updateImageSize" />
+  </body>
+</html>

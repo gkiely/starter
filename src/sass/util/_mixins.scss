@@ -50,64 +50,15 @@
 /**
  * Vertically center
  */
- // @mixin vert-center{
- //   display: flex;
- //   align-items: center;
- // }
-
 @mixin vertical-center{
-  height: 1em;
-  @include tbma;
-  text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
-@mixin center(){
-  height: 1em;
-  width: 1em;
-  @include trblma;
-  text-align: center;
+@mixin vc{
+  @include vertical-center;
 }
-
-
-
-/**
- * module mixin
- * 
- * @param  $args...   1st: module name, rest: list of modifiers
- * @return Placeholders
- */
-@mixin module($args...){
-  $module: nth($args, 1);
-  
-  @extend %#{$module} !optional;
-  @if length($args) > 1{
-    @for $i from 2 through length($args){
-      $item: nth($args, $i);
-      @extend %#{$module}-#{$item};
-    }    
-  }
-}
-
-
-/**
- * Media query
- */
- // @mixin mq($point) {
- //   @if $point == fromMobile {
- //     @media only screen and (min-device-width: 0px) and (max-device-width: 767px) { 
- //      @content; 
- //    }
- //   }
- //   @else if $point == fromTablet {
- //     @media (min-device-width: 768px) { @content; }
- //   }
- //   @else if $point == fromDesktop {
- //     @media (min-device-width: 1024px)  { @content; }
- //   }
- // }
-
-
-
 
 @mixin fromMobile{
   @media (min-width: 768px) { @content; }
@@ -142,47 +93,3 @@
   font-size: inherit;
   text-decoration: none;
 }
-
-
-// @mixin mod($args...){
-//   $module: nth($args, 1);
-//   @if length($args) > 1{
-//     @for $i from 2 through length($args){
-//       $item: nth($args, $i);
-//       $props: map-get($module, $item);
-//       @each $key, $val in $props{
-//         #{$key}: $val;
-//       }
-//     }
-//   }
-// }
-
-// @function map-set($map, $key, $value) {
-//   $new: ($key: $value);
-//   @return map-merge($map, $new);
-// }
-
-// $modules: ();
-// @mixin createModule($name, $map){
-//     $modules: map-set($modules, sup, $map);
-//     @debug $modules;
-// }
-
-// @include createModule,(Text (
-//   light: (
-//     color: red,
-//     background: blue
-//   )
-// ));
-
-
-// @mixin modd($args...){
-//   $module: nth($args, 1);
-//   @if length($args) > 1{
-//      @for $i from 2 through length($args){
-
-//      }
-//   }
-// }
-
-// @include modd(Text, light);
