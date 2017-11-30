@@ -59,8 +59,8 @@
     "npm-run-all": "^4.0.2",
     "rebuild-node-sass": "^1.1.0",
     "rimraf": "^2.6.1",
-    "webpack": "^3.8.1",
-    "serve-index": "^1.9.1"
+    "serve-index": "^1.9.1",
+    "webpack": "^3.8.1"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -81,7 +81,7 @@
     "rc-progress": "^2.2.4",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
-    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "store": "^2.0.12",
     "uuid": "^3.1.0"
   },

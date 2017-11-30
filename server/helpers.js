@@ -67,7 +67,19 @@ let helpers = {
   },
   rmw(str){
     return str.replace(/\n|\s*/g, '');
-  }
+  },
+  /**
+   * Returns true if a path is a request for a static file.
+   * eg isPathAResourceRequest('test.com/image.png') will return true
+   * isUrlRequestingResource('test.com/live') will return false
+   */
+  isPathAResourceRequest(url){
+    let filteredUrl = url.replace(/\/$/, "");
+    let splitUrl = filteredUrl.split('/');
+    let lastPath = splitUrl[splitUrl.length-1];
+
+    return /[.]/.test(lastPath);//if last part contains a '.' eg /file.txt
+  },
 };
 
 

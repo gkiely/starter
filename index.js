@@ -47,8 +47,13 @@ let {
   log, 
   // handleQuery, 
   handleResp, 
-  // handleCatch
+  // handleCatch,
+  isPathAResourceRequest,
 } = require('./server/helpers');
+
+const handle404 = function(req, res) {
+  return res.status(404).send(`'${req.path}' Not found`);
+};
 // ==== End of Helpers ====
 
 
@@ -101,7 +106,13 @@ if(settings.debug){
   app.use('/design', express.static('design'));
 }
 
-app.use('/', express.static('dist'));
+app.use(express.static('dist'));
+app.get('*', function(req, res){
+  if(isPathAResourceRequest(req.path)) {
+    return handle404(req, res);
+  }
+  return res.sendFile(__dirname + '/dist/index.html');
+});
 /*=====  End of Server Setup  ======*/
 
 
