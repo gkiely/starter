@@ -32,7 +32,7 @@ global.__base   = __dirname + '/';
 let settings    = require('./server/settings');
 
 let app         = express();
-let router      = express.Router();
+let api         = express.Router();
 let server      = require('http').Server(app);
 
 // Postgres
@@ -106,33 +106,23 @@ if(settings.debug){
   app.use('/design', express.static('design'));
 }
 
-app.use(express.static('dist'));
-app.get('*', function(req, res){
-  if(isPathAResourceRequest(req.path)) {
-    return handle404(req, res);
-  }
-  return res.sendFile(__dirname + '/dist/index.html');
-});
 /*=====  End of Server Setup  ======*/
 
 
 /*===========================
 =            API            =
 ===========================*/
-app.set('views', path.join(__dirname, 'dist/app'));
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
 
 app.use('/', express.static('dist/app'));
 app.get('/page', function(req, res, next){
   res.sendFile(__dirname + '/dist/app/index.html');
 });
 
-router.get('/app', function(req, res, next){
+api.get('/app', function(req, res, next){
   return handleResp(res, {});
 });
 
-router.get('/test', function(req, res, next){
+api.get('/test', function(req, res, next){
   handleResp(res, {success: 1})
 });
 
@@ -142,9 +132,21 @@ router.get('/test', function(req, res, next){
 /*==============================
 =            Server            =
 ==============================*/
+app.use('/api', api);
+app.use(express.static('dist'));
 
-// -- Bind router
-app.use('/api', router);
+app.get('*', function(req, res){
+  if(isPathAResourceRequest(req.path)) {
+    return handle404(req, res);
+  }
+  else if(req.path.startsWith('/api/')){
+    return handle404(req, res);
+  }
+  return res.sendFile(__dirname + '/dist/index.html');
+});
+
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
 // -- Error handler
 app.use(function(err, req, res, next){

@@ -27,7 +27,7 @@
     "comma-dangle": 0,
     "no-empty": 0,
     "no-unused-vars": [1, {"args": "none", "varsIgnorePattern": "React|log|gup"}],  // Don"t check function arguments, ignore some common used variables.
-    "indent": ["warn", 2],
+    "indent": ["warn", 2, {"MemberExpression": 0}],
     "key-spacing": ["warn", {"mode": "minimum"}],
     "no-multiple-empty-lines": [1, {"max": 2}]
   },
