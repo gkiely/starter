@@ -1,6 +1,4 @@
 /*eslint no-console: 0 */
-import clone from 'clone';
-import _extend from 'extend';
 import query from 'query-string';
 import {env as environments} from 'utils/constants';
 import log from 'loglevel';
@@ -15,13 +13,6 @@ export const isWebPlatform = (platform === 'web');
 const pathname = window.location.pathname;
 export const isHbbTvHomepage = (pathname === '/');
 export const isHbbTvShowpage = (pathname !== '/');
-
-export function extend(obj, newObj){
-  let o = clone(obj);
-  return _extend(o, newObj);
-}
-
-export {clone};
 
 export const roundTo1DP = function(num) {
   return round(num, 1);

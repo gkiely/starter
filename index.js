@@ -80,32 +80,6 @@ app.use(expressValidator());
 //     maxAge: new Date(Date.now() + (60 * 60 * 24 * cookieExpire * 1000)).getTime()
 //   }
 // }));
-
-if(settings.debug){
-  let serveIndex  = require('serve-index');
-  let EJS         = require('ejs');
-  let {
-    handleResp,
-    handleCatch,
-  }               = require('./server/helpers');
-
-  app.use(logger);
-  // app.use('/design', express.static('design'));
-  app.use('/design/:img/2x', (req, res, next) => {
-    let url = req.originalUrl.replace('/2x', '');
-
-    EJS.renderFile("./server/design.ejs", { url }, (err, result) => {
-      if (err) {
-        handleCatch(res, `Failed to generate HTML for debug page! ${err}`, 500);
-      } else {
-        handleResp(res, result);
-      }
-    });
-  });
-  app.use('/design', serveIndex('design', {icons: true}));
-  app.use('/design', express.static('design'));
-}
-
 /*=====  End of Server Setup  ======*/
 
 

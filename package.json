@@ -22,7 +22,8 @@
     "test:coverage": "jest --coverage",
     "start": "npm run setup && npm-run-all clean --parallel lint:dev libsass dll:dev --parallel js:dev test:dev --sequential build:dev",
     "production": "npm run setup && npm-run-all clean lint:prod libsass dll:prod js:prod test:prod build:prod",
-    "now-start": "node index"
+    "now-start": "node index",
+    "test-prod": "NODE_ENV=production node index"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -79,12 +80,10 @@
     "lodash": "^4.17.4",
     "pg-promise": "^7.3.2",
     "pwd": "^1.1.0",
-    "rc-progress": "^2.2.4",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-router-dom": "^4.2.2",
-    "store": "^2.0.12",
-    "uuid": "^3.1.0"
+    "store": "^2.0.12"
   },
   "repository": {
     "type": "git",

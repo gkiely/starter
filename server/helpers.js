@@ -1,26 +1,7 @@
-let clone   = require('clone');
-let _extend = require('extend');
 let path    = require('path');
-let uuid        = require('uuid/v4');
 
 
 let helpers = {
-  addComponent(obj, {id, component, json}){
-    let result = clone(obj);
-    result.layout.push({
-      id,
-      component,
-    });
-    result.items[id] = _extend(json, {
-      id
-    });
-    return result;
-  },
-  clone,
-  extend(obj, newObj){
-    let o = clone(obj);
-    return _extend(o, newObj);
-  },
   beep(){
     // console.log("\007");
   },
@@ -61,9 +42,6 @@ let helpers = {
     console.error(msg);
     return res.status(code)
       .send({message: msg})
-  },
-  getId(){
-    return uuid().substr(0, 7);
   },
   rmw(str){
     return str.replace(/\n|\s*/g, '');
