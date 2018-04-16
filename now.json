@@ -1,0 +1,7 @@
+{
+  "public": false,
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "alias": "starter"
+}

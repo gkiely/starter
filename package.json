@@ -21,7 +21,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "start": "npm run setup && npm-run-all clean --parallel lint:dev libsass dll:dev --parallel js:dev test:dev --sequential build:dev",
-    "production": "npm run setup && npm-run-all clean lint:prod libsass dll:prod js:prod test:prod build:prod"
+    "production": "npm run setup && npm-run-all clean lint:prod libsass dll:prod js:prod test:prod build:prod",
+    "now-start": "node index"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
