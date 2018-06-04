@@ -4,8 +4,7 @@ let rootDir    = process.cwd();
 var resolve    = path.join.bind(path, rootDir);
 
 module.exports = {
-  // devtool: 'inline-source-map',
-  devtool: 'eval-source-map',
+  devtool: 'inline-source-map',
   entry: './src/js/app/app.js',
   output: {
     filename: 'app.js',

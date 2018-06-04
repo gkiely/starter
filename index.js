@@ -130,9 +130,9 @@ app.use(function(err, req, res, next){
 
 // -- Launch Server
 server.listen(settings.port, function(){
-  let ip = require('get-my-ip')();
+  // let ip = require('get-my-ip')();
   log(`=========================`)
   log(`Local: localhost:` + settings.port);
-  log(`LAN:   ${ip}:${settings.port}`);
+  // log(`LAN:   ${ip}:${settings.port}`);
   log(`=========================`)
 });

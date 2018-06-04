@@ -1,8 +1,9 @@
 /*======================================
 =            Vendor Imports            =
 ======================================*/
-import React from 'react';
-import createClass from 'create-react-class';
+import React, {Component} from 'react';
+import autoBind from 'react-autobind';
+// import PropTypes from 'prop-types';
 /*=====  End of Vendor Imports  ======*/
 
 /*===================================
@@ -23,16 +24,22 @@ import createClass from 'create-react-class';
 /*=================================
 =            Component            =
 =================================*/
-export default createClass({
+export default class MyComponent extends Component{
+  constructor(props){
+    super(props);
+    this.state = {};
+    autoBind(this);    
+  }
   render(){
     return (
       <div></div>
     );
   }
-});
+}
 /*=====  End of Component  ======*/
 
 /*==================================
 =            Prop Types            =
 ==================================*/
+// MyComponent.propTypes = {};
 /*=====  End of Prop Types  ======*/

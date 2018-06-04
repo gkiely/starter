@@ -20,7 +20,6 @@
 
 
 // Database Driven
-require('dotenv').config();
 let settings = {
   debug: true,
   port: 8000,
