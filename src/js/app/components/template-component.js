@@ -27,8 +27,8 @@ import autoBind from 'react-autobind';
 export default class MyComponent extends Component{
   constructor(props){
     super(props);
+    autoBind(this);
     this.state = {};
-    autoBind(this);    
   }
   render(){
     return (
