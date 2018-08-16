@@ -4,7 +4,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import autoBind from 'react-autobind';
-import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, withRouter /*, Switch, Link*/} from 'react-router-dom';
 /*=====  End of Vendor Imports  ======*/
 
 /*===================================

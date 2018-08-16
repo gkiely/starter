@@ -1,5 +1,5 @@
-let 
-  concat        = require('gulp-concat'),
+/* eslint-disable no-console */
+let
   config        = require('./config/gulp-config.js'),
   eslint        = require('gulp-eslint'),
   es            = require('event-stream'),
@@ -13,18 +13,13 @@ let
   join          = path.join,
   sass          = require('gulp-sass')
   sassGlob      = require('gulp-sass-glob'),
-  shell         = require('gulp-shell'),
   sourcemaps    = require('gulp-sourcemaps'),
-  webserver     = require('gulp-webserver'),
   webpack       = require('webpack'),
-  newer         = require('gulp-newer'),
   processhtml   = require('gulp-noop'),
   htmlmin       = require("gulp-noop"),
   apidoc        = require('gulp-noop'),
   uuid          = require('uuid'),
-  sequence      = require('gulp-sequence'),
-  minifyCSS     = function(){},
-  uglify        = function(){};
+  sequence      = require('gulp-sequence');
 
 
 /*===============================
