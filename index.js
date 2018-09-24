@@ -34,9 +34,21 @@ let settings    = require('./server/settings');
 let app         = express();
 let api         = express.Router();
 let server      = require('http').Server(app);
+let prod        = process.env.NODE_ENV === 'production';
 
 // Postgres
 // let db          = pgp(settings.postgres);
+function redirect(req, res, next) {
+  var host = req.get('host');
+  if(/^www\./.test(host)){
+    host = host.substring(4, host.length);
+    res.writeHead(301, {'Location':req.protocol + '://' + host + req.originalUrl,
+        'Expires': new Date().toGMTString()});
+    res.end();
+  } else {
+    next();
+  }
+}
 /*=====  End of Setup  ======*/
 
 
@@ -66,6 +78,9 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(expressValidator());
+if(prod){
+  app.use(redirect);  
+}
 
 // let cookieExpire  = 365; // Days before login cookie expires
 // Postgres session

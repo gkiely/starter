@@ -3,7 +3,9 @@
   "env": {
     "NODE_ENV": "production"
   },
-  "alias": "starter",
+  "alias": [
+    "starter"
+  ],
   "files": [
     "dist"
   ]
