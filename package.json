@@ -64,6 +64,8 @@
     "webpack": "^3.8.1"
   },
   "dependencies": {
+    "@material-ui/core": "^3.1.1",
+    "@material-ui/icons": "^3.0.1",
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
     "connect-pg-simple": "^4.2.1",
