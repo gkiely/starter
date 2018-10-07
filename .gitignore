@@ -6,3 +6,4 @@ node_modules
 *.sublime-project
 .eslintcache
 yarn.lock
+yarn-error.log
