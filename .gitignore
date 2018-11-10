@@ -7,3 +7,4 @@ node_modules
 .eslintcache
 yarn.lock
 yarn-error.log
+vendor-manifest.json
